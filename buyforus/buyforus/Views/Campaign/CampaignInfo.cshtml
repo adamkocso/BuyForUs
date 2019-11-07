@@ -1,1 +1,38 @@
-﻿
+﻿@model  CampaignViewModel
+
+<div>
+    @if (@Model.User.Uri == null)
+    {       
+        <img src="~/images/org-default.png" />
+    }
+    else
+    {
+        <img src="@Model.User.Uri" />
+    }
+    <h1>@Model.Campaign.Title</h1>
+    <h2>@Model.Campaign.ExpiryDate</h2>
+    <h2>@Model.Campaign.TotalPrice</h2>
+    @if (Model.Campaign.Products != null) {
+        <table>
+            <tr>
+                @foreach (var product in Model.Campaign.Products)
+                {
+                    <td>@product.ProductName</td>
+                    <td>@product.Amount</td>
+                    <td>@product.Price</td>
+                    <td>
+                        <form method="post">
+                            <button type="submit" class="btn btn-sm btn-primary">Pay</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post">
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    </td>
+                }
+            </tr>
+        </table>
+    }
+    <h1>No products</h1>
+</div>

@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using buyforus.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace buyforus.Controllers.Home
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ICampaignService campaignService;
-
         public HomeController(ICampaignService campaignService)
         {
             this.campaignService = campaignService;
         }
 
-        [HttpGet("/")]
+        [HttpGet("/home")]
         public async Task<IActionResult> Index()
         {
            var campaigns = await campaignService.ListAllCampaignAsync();

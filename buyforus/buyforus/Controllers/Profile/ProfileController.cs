@@ -1,13 +1,16 @@
 ﻿using System.Threading.Tasks;
+using buyforus.Models;
 using buyforus.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace buyforus.Controllers.Profile
+namespace buyforus.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
-        private readonly UserManager<Models.User> userManager;
+        private readonly UserManager<User> userManager;
 
         public ProfileController(UserManager<Models.User> userManager)
         {
