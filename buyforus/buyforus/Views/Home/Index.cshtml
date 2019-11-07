@@ -3,48 +3,40 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-2 topdonators">
-            <div>
-                <h3>Our latest donators</h3>
-                <h4>Kriszti</h4>
-                <h4>Ityu</h4>
-                <h4>Ádám</h4>
-            </div>
+<div class="row">
+    <div class="col-md-2 topdonators">
+        <div>
+            <h3>Our latest donators</h3>
+            <h4>Kriszti</h4>
+            <h4>Ityu</h4>
+            <h4>Ádám</h4>
         </div>
-        <div class="col-md-10">
-            <div class="card-deck">
-                @if (Model != null)
+    </div>
+    <div class="col-md-10">
+        <div class="card-deck">
+            @if (Model != null)
+            {
+                @foreach (var campaign in @Model)
                 {
-                    @foreach (var campaign in @Model)
-                    {
-                        <div class=" col-md-4 mb-4">
-                            <div class="card">
-                                <div class="view overlay">
-                                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
-                                    <a href="#!">
-                                        <div class="mask rgba-white-slight"></div>
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <div>
-                                        <p class="date"></p>
-                                    </div>
-                                    <h4 class="card-title">@campaign.Title</h4>
-                                    <p class="card-text">@campaign.Description</p>
-
-                                    @* <form asp-controller="Campaign" asp-action="CampaignInfo" asp-route-placeId="@campaign.CampaignId" method="get"> *@
-                                    @*     <button type="button" class="btn btn-light-blue btn-md">Read more</button> *@
-                                    @* </form> *@
-
-                                </div>
+                    <div class=" col-md-4 mb-4">
+                        <div class="card">
+                            <div class="view overlay">
+                                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
+                                <a href="#!">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">@campaign.Title</h4>
+                                <p class="card-text">@campaign.Description</p>
+                                <form asp-controller="Campaign" asp-action="CampaignInfo" asp-route-campaignId="@campaign.CampaignId" method="get">
+                                    <button type="submit" class="btn btn-light-blue btn-md">Read more</button>
+                                </form>
                             </div>
                         </div>
-                    }
+                    </div>
                 }
-            </div>
+            }
         </div>
     </div>
 </div>
