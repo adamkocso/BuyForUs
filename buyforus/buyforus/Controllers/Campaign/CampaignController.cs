@@ -16,9 +16,11 @@ namespace buyforus.Controllers
         private readonly ICampaignService campaignService;
         private readonly UserManager<User> userManager;
 
-        public CampaignController(ICampaignService campaignService)
+        public CampaignController(ICampaignService campaignService,
+            UserManager<User> userManager)
         {
             this.campaignService = campaignService;
+            this.userManager = userManager;
         }
 
         [HttpGet("/campaigninfo/{campaignId}")]
