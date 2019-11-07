@@ -13,6 +13,5 @@ namespace buyforus.Models
         public DateTime ExpiryTime { get; set; }
         public int TotalPrice { get; set; }
         public List<Product> Products { get; set; }
-        
     }
 }
