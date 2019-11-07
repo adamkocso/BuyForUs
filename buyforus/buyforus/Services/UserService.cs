@@ -38,6 +38,11 @@ namespace buyforus.Services
             return result;
         }
 
+        public void WithdrawMoney(ApiViewModel model)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public async Task<IdentityResult> RegisterAsync(OrganizationViewModel model)
         {
             var organization = mapper.Map<OrganizationViewModel, User>(model);

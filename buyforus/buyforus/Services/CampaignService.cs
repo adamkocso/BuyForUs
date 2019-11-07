@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using buyforus.Models;
+using buyforus.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace buyforus.Services
@@ -20,6 +21,11 @@ namespace buyforus.Services
         {
             var campaigns = await applicationContext.Campaigns.ToListAsync();
             return campaigns;
+        }
+
+        public void DecrementProductAmount(ApiViewModel model)
+        {
+            
         }
     }
 }
