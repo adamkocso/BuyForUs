@@ -55,7 +55,7 @@ namespace buyforus.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    ExpiredTime = table.Column<DateTime>(nullable: false)
+                    ExpiryTime = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -171,17 +171,17 @@ namespace buyforus.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "465295b6-ac86-4bbf-bd50-5e3969e1510c", "0dc863f4-8966-4855-991c-0f8604bce96e", "Admin", "ADMIN" });
+                values: new object[] { "de5d4cd9-f65e-4675-b290-f2380e7194c4", "ca56e928-ea92-4371-a7a4-a9041f742518", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "b57845e4-75cd-48df-9f5c-81dc1e04535b", "542554d1-a0d0-4f83-b8cd-9b347ce033b7", "Donator", "DONATOR" });
+                values: new object[] { "dbf29b3d-b512-4cec-a269-d217431292de", "5153bd2c-c6d3-4ae1-abcb-037b66e2533c", "Donator", "DONATOR" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "59bf33d6-0873-407f-9274-f5a71f4a75f4", "fead2d49-0533-4254-ac0f-eda61698ff3b", "Organization", "ORGANIZATION" });
+                values: new object[] { "21b15d25-002e-4eab-9d43-ef918c952eb2", "6c2bc55f-e756-4d9f-83e8-532559474b58", "Organization", "ORGANIZATION" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
