@@ -18,15 +18,39 @@ namespace buyforus.Controllers.User
             this.userService = userService;
             this.userManager = userManager;
         }
-
-        [HttpGet("/DonaterReg")]
-        public IActionResult DonaterRegistration()
+        
+        [HttpGet("/OrganizationReg")]
+        public IActionResult OrganizationRegistration()
         {
             return View();
         }
+        
+        [HttpPost("/OrganizationReg")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> OrganizationRegistration(OrganizationViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
-        [HttpGet("/OrganizationReg")]
-        public IActionResult OrganizationRegistration()
+            var result = await userService.RegisterAsync(model);
+
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            return View(model);
+        }
+        
+        [HttpGet("/DonaterReg")]
+        public IActionResult DonaterRegistration()
         {
             return View();
         }
@@ -44,7 +68,7 @@ namespace buyforus.Controllers.User
 
             if (result.Succeeded)
             {
-                return RedirectToAction("Login", "Login");
+                return RedirectToAction("Login", "User");
             }
 
             foreach (var error in result.Errors)
@@ -55,12 +79,6 @@ namespace buyforus.Controllers.User
             return View(model);
         }
         
-        
-        
-        
-        
-        
-
         [HttpGet("/login")]
         public async Task<IActionResult> Login()
         {
@@ -71,32 +89,7 @@ namespace buyforus.Controllers.User
 
         [HttpPost("/login")]
         [ValidateAntiForgeryToken]
-        public IActionResult Login(OrganizationViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                
-                return RedirectToAction(nameof(UserController.LoginUsers), "User");
-            }
-
-            return View(model);
-        }
-        
-        [HttpPost("/login")]
-        [ValidateAntiForgeryToken]
-        public  IActionResult Login(DonaterViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                return RedirectToAction(nameof(UserController.LoginUsers), "User");
-            }
-
-            return View(model);
-        }
-        
-        [HttpPost("/login")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> LoginUsers(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {

@@ -24,25 +24,25 @@ namespace buyforus.Services
         {
             await signInManager.SignOutAsync();
         }
-        
+
         public async Task<IdentityResult> RegisterAsync(DonaterViewModel model)
         {
             var donater = new User {UserName = model.Username, Email = model.Email};
             var result = await userManager.CreateAsync(donater, model.Password);
             await userManager.AddToRoleAsync(donater, "Donater");
-            
+
             return result;
         }
-        
+
         public async Task<IdentityResult> RegisterAsync(OrganizationViewModel model)
         {
             var organization = mapper.Map<OrganizationViewModel, User>(model);
             var result = await userManager.CreateAsync(organization, model.Password);
             await userManager.AddToRoleAsync(organization, "Organization");
-            
+
             return result;
         }
-        
+
         public async Task<List<string>> LoginAsync(LoginViewModel model)
         {
             var user = await userManager.FindByEmailAsync(model.Email);
@@ -58,5 +58,15 @@ namespace buyforus.Services
             return model.ErrorMessages;
         }
         
+        private List<string> CheckLoginErrors(SignInResult result, List<string> errors)
+        {
+            if (!result.Succeeded)
+            {
+                errors.Add("Invalid login attempt");
+            }
+
+            return errors;
+        }
     }
+    
 }
