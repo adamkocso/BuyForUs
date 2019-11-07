@@ -81,6 +81,7 @@ namespace buyforus.Controllers
         }
         
         [HttpGet("/login")]
+        [Route("/Account/Login")]
         public async Task<IActionResult> Login()
         {
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
