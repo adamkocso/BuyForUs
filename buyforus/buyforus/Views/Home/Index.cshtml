@@ -38,6 +38,11 @@
                                     <!--Text-->
                                     <p class="card-text">@campaign.Description</p>
                                     <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+
+                                    @* <form asp-controller="Campaign" asp-action="CampaignInfo" asp-route-placeId="@campaign.CampaignId" method="get"> *@
+                                    @*     <button type="button" class="btn btn-light-blue btn-md">Read more</button> *@
+                                    @* </form> *@
+
                                     @*<form asp-controller="Campaign" asp-action="CampaignInfo" asp-route-placeId="@campaign.CampaignId" method="get">
                                         <button type="button" class="btn btn-light-blue btn-md">Read more</button>
                                     </form>*@
