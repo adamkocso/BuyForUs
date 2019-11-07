@@ -44,7 +44,7 @@ namespace buyforus.Services
                 User user = new User
                 {
                     UserName = "Donator",
-                    Email = "user@gmail.com",
+                    Email = "donator@gmail.com",
                 };
 
                 IdentityResult check = userManager.CreateAsync(user, "Password1234..").Result;

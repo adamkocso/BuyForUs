@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace buyforus.Controllers.Campaign
 {
-    public class CampaignController:Controller
+    public class CampaignController : Controller
     {
         [HttpGet("/campaignInfo")]
         public IActionResult CampaignInfo()
