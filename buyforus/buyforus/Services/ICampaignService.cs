@@ -10,6 +10,6 @@ namespace buyforus.Services
     public interface ICampaignService
     {
         Task<List<Campaign>> ListAllCampaignAsync();
-        void DecrementProductAmount(ApiViewModel model);
+        Task DecrementProductAmount(ApiViewModel model);
     }
 }

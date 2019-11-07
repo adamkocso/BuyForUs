@@ -11,6 +11,7 @@ namespace buyforus.Services
     public class CampaignService : ICampaignService
     {
         private readonly ApplicationContext applicationContext;
+        
 
         public CampaignService(ApplicationContext applicationContext)
         {
@@ -23,9 +24,16 @@ namespace buyforus.Services
             return campaigns;
         }
 
-        public void DecrementProductAmount(ApiViewModel model)
+        public async Task DecrementProductAmount(ApiViewModel model)
         {
-            
+            var campaign = await FindCampaignById(model.CampaignId);
+            // elő kellene szerezni az adott productot a neve alapján model.ProductName
+            // a product amountból kivonni a model.Amount
+        }
+        public async Task<Campaign> FindCampaignById(long campaignId)
+        {
+            var campaign = await applicationContext.Campaigns.FirstOrDefaultAsync(a => a.CampaignId == campaignId);
+            return campaign;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿namespace buyforus.Models
+namespace buyforus.Models
+
 {
     public class Product
     {

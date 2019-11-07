@@ -40,7 +40,7 @@ namespace buyforus.Services
 
         public void WithdrawMoney(ApiViewModel model)
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public async Task<IdentityResult> RegisterAsync(OrganizationViewModel model)

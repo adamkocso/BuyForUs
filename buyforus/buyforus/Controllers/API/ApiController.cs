@@ -18,7 +18,7 @@ namespace buyforus.Controllers.API
         }
         
         [HttpPut("api/donation")]
-        public async Task<ActionResult> Donation([FromBody] ApiViewModel model)
+        public ActionResult Donation([FromBody] ApiViewModel model)
         {
             campaignService.DecrementProductAmount(model);
             userService.WithdrawMoney(model);
