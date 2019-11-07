@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29306.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "buyforus", "buyforus\buyforus.csproj", "{597E7C89-538C-491E-A3CE-171E5E8ACD42}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{597E7C89-538C-491E-A3CE-171E5E8ACD42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{597E7C89-538C-491E-A3CE-171E5E8ACD42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{597E7C89-538C-491E-A3CE-171E5E8ACD42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{597E7C89-538C-491E-A3CE-171E5E8ACD42}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {832468E5-13EE-4AE1-8EA7-0C8079429996}
+	EndGlobalSection
+EndGlobal
