@@ -42,22 +42,22 @@ namespace buyforus.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "de5d4cd9-f65e-4675-b290-f2380e7194c4",
-                            ConcurrencyStamp = "ca56e928-ea92-4371-a7a4-a9041f742518",
+                            Id = "cd42919d-1822-4258-92f0-f4c5bbfb9cd7",
+                            ConcurrencyStamp = "7010484b-0158-4b3e-838b-7321cfba20da",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "dbf29b3d-b512-4cec-a269-d217431292de",
-                            ConcurrencyStamp = "5153bd2c-c6d3-4ae1-abcb-037b66e2533c",
+                            Id = "1e715c4b-6b74-433e-a565-f94356e160a7",
+                            ConcurrencyStamp = "f9b18360-3209-4369-9362-6443e09e158c",
                             Name = "Donator",
                             NormalizedName = "DONATOR"
                         },
                         new
                         {
-                            Id = "21b15d25-002e-4eab-9d43-ef918c952eb2",
-                            ConcurrencyStamp = "6c2bc55f-e756-4d9f-83e8-532559474b58",
+                            Id = "23621616-7332-452a-a2e3-0a1c452d86bf",
+                            ConcurrencyStamp = "7196922a-4d78-4348-bc56-1bfc5937afba",
                             Name = "Organization",
                             NormalizedName = "ORGANIZATION"
                         });
@@ -158,7 +158,11 @@ namespace buyforus.Migrations
 
                     b.Property<string>("Title");
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("CampaignId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Campaigns");
                 });
@@ -170,13 +174,21 @@ namespace buyforus.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
+                    b.Property<string>("CharityType");
+
+                    b.Property<string>("CompanyName");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
+
+                    b.Property<string>("Description");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<string>("Headquarters");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -194,7 +206,11 @@ namespace buyforus.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
+                    b.Property<string>("RepresentativeName");
+
                     b.Property<string>("SecurityStamp");
+
+                    b.Property<string>("TaxNumber");
 
                     b.Property<bool>("TwoFactorEnabled");
 
@@ -256,6 +272,13 @@ namespace buyforus.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("buyforus.Models.Campaign", b =>
+                {
+                    b.HasOne("buyforus.Models.User")
+                        .WithMany("Campaigns")
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }
