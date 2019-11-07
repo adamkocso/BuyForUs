@@ -17,13 +17,13 @@ namespace buyforus.Controllers.Campaign
             this.campaignService = campaignService;
         }
 
-        [HttpGet("/campaignInfo/{campaignID}")]
-        public IActionResult CampaignInfo(long campaignID)
+        [HttpGet("/campaigninfo/{campaignID}")]
+        public async Task<IActionResult> CampaignInfo(long campaignId)
         {
-            if (campaignID != 0)
+            if (campaignId != 0)
             {
-                var CampaignViewModel = campaignService.findCampaignById();
-                return View();
+                var CampaignViewModel =await campaignService.FindCampaignByIdAsync(campaignId);
+                return View(CampaignViewModel);
             }
 
             return RedirectToAction(nameof(HomeController.Index), "Home");
