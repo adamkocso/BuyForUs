@@ -3,11 +3,13 @@ using AutoMapper;
 using buyforus.Services;
 using buyforus.Models;
 using buyforus.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace buyforus.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
 

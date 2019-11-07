@@ -21,47 +21,50 @@
 
 <body>
 <nav class="navbar sticky-top navbar-light bg-light">
-    <div class="container-body">
-        <a class="navbar-brand" asp-action="Index" asp-controller="Home">
-            <img src="~/images/buyforus.png" height="40" width="120">
-        </a>
-        <div class="nav-item dropdown" id="navbarDropdown">
-            <a class="navbar-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="navbar-toggler-icon"></span>
+        <div class="container">
+            <a class="navbar-brand" asp-action="Index" asp-controller="Home">
+                <img src="~/images/buyforus.png" height="40" width="120">
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                @if (SignInManager.IsSignedIn(User))
-                {
-                    <a class="dropdown-item" asp-controller="Home" asp-action="Index">Home page</a>
-                    @if (User.IsInRole("Donator"))
-                    {
-                        <a class="dropdown-item" asp-controller="Profile" asp-action="DonaterProfile">My profile</a>
-                    }
-                    @if (User.IsInRole("Organization"))
-                    {
-                        <a class="dropdown-item" asp-controller="Profile" asp-action="OrgProfile">My profile</a>
-                        <a class="dropdown-item" asp-controller="Campaign" asp-action="CampaignInfo">Manage campaigns</a>
-                    }
-                    <a class="dropdown-item" asp-controller="User" asp-action="Logout">Logout</a>
-                }
-            </div>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <div class="nav-item dropdown" id="navbarDropdown">
+                    <a class="navbar-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="navbar-toggler-icon"></span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" asp-controller="Home" asp-action="Index">Home page</a>
+                        @if (User.IsInRole("Donator"))
+                        {
+                            <a class="dropdown-item" asp-controller="Profile" asp-action="DonaterProfile">My profile</a>
+                        }
+                        @if (User.IsInRole("Organization"))
+                        {
+                            <a class="dropdown-item" asp-controller="Profile" asp-action="OrgProfile">My profile</a>
+                            <a class="dropdown-item" asp-controller="Campaign" asp-action="CampaignInfo">Manage campaigns</a>
+                        }
+                        <a class="dropdown-item" asp-controller="User" asp-action="Logout">Logout</a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <a asp-controller="User" asp-action="Login" class="btn bg-light">Login</a>
+            }
         </div>
+    </nav>
+    <div>
+        @RenderBody()
     </div>
-</nav>
-        <div>
-            @RenderBody()
+<footer class="page-footer font-small light">
+        <div class="footer-copyright text-center py-3">
+            © @DateTime.Now.Year Copyright:
+            <a href="#"> SeaShark Crew From Tetris</a>
         </div>
-
-        <footer class="page-footer font-small light">
-            <div class="footer-copyright text-center py-3">
-                © @DateTime.Now.Year Copyright:
-                <a href="#"> SeaShark Crew From Tetris</a>
-            </div>
-        </footer>
+    </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
