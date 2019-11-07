@@ -19,6 +19,7 @@
 <body>
 
 <nav class="navbar sticky-top navbar-light red lighten-1">
+  
   <a class="navbar-brand" asp-action="Index" asp-controller="Home">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
@@ -49,12 +50,12 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Logout</a>
-        </li>
+      </li>
     </ul>
   </div>
 </nav>
 
-<div>
+<div class="container-body">
   @RenderBody()
 </div>
 
