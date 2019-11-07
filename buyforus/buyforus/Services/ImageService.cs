@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace buyforus.Services
 {
-    public class ImageService:IImageService
+    public class ImageService : IImageService
     {
         private readonly IBlobService blobService;
         private int fourMegaByte = 4 * 1024 * 1024;
-        private readonly string[] validExtensions = { "jpg", "png", "jpeg" };
+        private readonly string[] validExtensions = {"jpg", "png", "jpeg"};
 
         public ImageService(IBlobService blobService)
         {
@@ -93,7 +93,7 @@ namespace buyforus.Services
 
         private void GetAllImagesFromBlobs(IListBlobItem item, List<ImageDetails> imageList)
         {
-            CloudBlobDirectory directory = (CloudBlobDirectory)item;
+            CloudBlobDirectory directory = (CloudBlobDirectory) item;
             IEnumerable<IListBlobItem> blobs = directory.ListBlobs();
             var blob = blobs.First();
             imageList.Add(new ImageDetails

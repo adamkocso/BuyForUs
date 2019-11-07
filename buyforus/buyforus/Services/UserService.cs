@@ -57,7 +57,7 @@ namespace buyforus.Services
             model.ErrorMessages = CheckLoginErrors(result, model.ErrorMessages);
             return model.ErrorMessages;
         }
-        
+
         private List<string> CheckLoginErrors(SignInResult result, List<string> errors)
         {
             if (!result.Succeeded)
@@ -68,5 +68,4 @@ namespace buyforus.Services
             return errors;
         }
     }
-    
 }
