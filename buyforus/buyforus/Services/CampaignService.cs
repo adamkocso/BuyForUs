@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using buyforus.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace buyforus.Services
 {
@@ -15,9 +16,9 @@ namespace buyforus.Services
             this.applicationContext = applicationContext;
         }
 
-        public List<Campaign> ListAllCampaign()
+        public async Task<List<Campaign>> ListAllCampaignAsync()
         {
-            var campaigns = applicationContext.Campaigns.ToList();
+            var campaigns = await applicationContext.Campaigns.ToListAsync();
             return campaigns;
         }
     }

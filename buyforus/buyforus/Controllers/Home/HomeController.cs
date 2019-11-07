@@ -17,9 +17,9 @@ namespace buyforus.Controllers.Home
         }
 
         [HttpGet("/")]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-           var campaigns = campaignService.ListAllCampaign();
+           var campaigns = await campaignService.ListAllCampaignAsync();
             return View(campaigns);
         }
     }

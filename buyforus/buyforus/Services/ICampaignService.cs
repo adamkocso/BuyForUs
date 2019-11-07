@@ -8,6 +8,6 @@ namespace buyforus.Services
 {
     public interface ICampaignService
     {
-        List<Campaign> ListAllCampaign();
+        Task<List<Campaign>> ListAllCampaignAsync();
     }
 }
