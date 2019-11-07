@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using buyforus.ViewModels;
-using buyforus.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,24 +7,25 @@ namespace buyforus.Controllers.Profile
 {
     public class ProfileController : Controller
     {
-        private readonly UserManager<Donater> donater;
+        private readonly UserManager<Models.User> userManager;
 
-        public ProfileController(UserManager<Donater> donater)
+        public ProfileController(UserManager<Models.User> userManager)
         {
-            this.donater = donater;
+            this.userManager = userManager;
         }
 
         [HttpGet("/donaterprofile")]
         public async Task<IActionResult> DonaterProfile()
         {
-            var currentDonater = await donater.GetUserAsync(HttpContext.User);
-            return View(new DonaterViewModel{Donater = currentDonater});
+            var currentDonater = await userManager.GetUserAsync(HttpContext.User);
+            return View(new UserViewModel{User = currentDonater});
         }
 
         [HttpGet("/orgprofile")]
-        public IActionResult OrgProfile()
+        public async Task<IActionResult> OrgProfile()
         {
-            return View();
+            var currentOrg = await userManager.GetUserAsync(HttpContext.User);
+            return View(new UserViewModel{User = currentOrg});
         }
 
         [HttpGet("/editdonaterprofile")]
@@ -35,7 +35,7 @@ namespace buyforus.Controllers.Profile
         }
 
         [HttpPost("/editdonaterprofile")]
-        public IActionResult EditDonaterProfile(DonaterViewModel editUserProfile)
+        public IActionResult EditDonaterProfile(UserViewModel editUserProfile)
         {
             return null;
         }
@@ -47,7 +47,7 @@ namespace buyforus.Controllers.Profile
         }
 
         [HttpPost("/editorgprofile")]
-        public IActionResult EditOrgProfile(OrganizationViewModel editOrgProfile)
+        public IActionResult EditOrgProfile(UserViewModel editOrgProfile)
         {
             return null;
         }

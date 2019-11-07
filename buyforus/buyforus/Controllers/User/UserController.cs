@@ -7,13 +7,13 @@ namespace buyforus.Controllers.User
         [HttpGet("/DonaterReg")]
         public IActionResult DonaterRegistration()
         {
-            return View();
+            return null;
         }
         
         [HttpGet("/OrganizationReg")]
         public IActionResult OrganizationRegistration()
         {
-            return View();
+            return null;
         }
     }
 }

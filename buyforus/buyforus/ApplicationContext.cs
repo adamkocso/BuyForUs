@@ -12,6 +12,7 @@ namespace buyforus
     public class ApplicationContext:IdentityDbContext<User>
     {
         public DbSet<Campaign> Campaigns { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public ApplicationContext(DbContextOptions options) : base(options)
         {
