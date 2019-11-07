@@ -1,17 +1,18 @@
 ﻿using System.Threading.Tasks;
 using buyforus.Controllers.Home;
+using buyforus.Models;
 using buyforus.Services;
 using buyforus.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace buyforus.Controllers.User
+namespace buyforus.Controllers
 {
     public class UserController : Controller
     {
         private readonly IUserService userService;
-        private readonly UserManager<Models.User> userManager;
+        private readonly UserManager<User> userManager;
 
         public UserController(IUserService userService, UserManager<Models.User> userManager)
         {
@@ -105,42 +106,48 @@ namespace buyforus.Controllers.User
 
             return View(model);
         }
-        
-        
-//        [HttpGet("/Google-login")]
-//        public IActionResult GoogleLogin()
-//        {
-//            var redirectUrl = "Google-response";
-//            var properties = userService.ConfigureExternalAutheticationProp("Google", redirectUrl);
-//
-//            return new ChallengeResult("Google", properties);
-//        }
-//
-//        [HttpGet("/Facebook-login")]
-//        public IActionResult FacebookLogin()
-//        {
-//            var redirectUrl = "Google-response";
-//            var properties = userService.ConfigureExternalAutheticationProp("Facebook", redirectUrl);
-//
-//            return new ChallengeResult("Facebook", properties);
-//        }
-//
-//        [HttpGet("/Google-response")]
-//        public async Task<IActionResult> GoogleResponse()
-//        {
-//            var info = await userService.GetExternalLoginInfoAsync();
-//            if (info == null)
-//            {
-//                return RedirectToAction(nameof(Login));
-//            }
-//
-//            var result = await userService.ExternalLoginSingnInAsync(info.LoginProvider, info.ProviderKey, false);
-//            if (!result.Succeeded)
-//            {
-//                await userService.CreateAndLoginGoogleUserAsync(info);
-//            }
-//
-//            return RedirectToAction(nameof(HomeController.Index), "Home");
-//        }
+        [HttpGet("/logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await userService.LogoutAsync();
+            return RedirectToAction(nameof(Landing.LandingController.LandingPage),"Landing");
+        }
+
+
+        //        [HttpGet("/Google-login")]
+        //        public IActionResult GoogleLogin()
+        //        {
+        //            var redirectUrl = "Google-response";
+        //            var properties = userService.ConfigureExternalAutheticationProp("Google", redirectUrl);
+        //
+        //            return new ChallengeResult("Google", properties);
+        //        }
+        //
+        //        [HttpGet("/Facebook-login")]
+        //        public IActionResult FacebookLogin()
+        //        {
+        //            var redirectUrl = "Google-response";
+        //            var properties = userService.ConfigureExternalAutheticationProp("Facebook", redirectUrl);
+        //
+        //            return new ChallengeResult("Facebook", properties);
+        //        }
+        //
+        //        [HttpGet("/Google-response")]
+        //        public async Task<IActionResult> GoogleResponse()
+        //        {
+        //            var info = await userService.GetExternalLoginInfoAsync();
+        //            if (info == null)
+        //            {
+        //                return RedirectToAction(nameof(Login));
+        //            }
+        //
+        //            var result = await userService.ExternalLoginSingnInAsync(info.LoginProvider, info.ProviderKey, false);
+        //            if (!result.Succeeded)
+        //            {
+        //                await userService.CreateAndLoginGoogleUserAsync(info);
+        //            }
+        //
+        //            return RedirectToAction(nameof(HomeController.Index), "Home");
+        //        }
     }
 }

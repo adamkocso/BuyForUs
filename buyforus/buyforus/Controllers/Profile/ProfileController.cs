@@ -1,23 +1,25 @@
 ﻿using System.Threading.Tasks;
 using AutoMapper;
 using buyforus.Services;
+using buyforus.Models;
 using buyforus.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace buyforus.Controllers.Profile
+namespace buyforus.Controllers
 {
     public class ProfileController : Controller
     {
-        private readonly UserManager<Models.User> userManager;
+
         private readonly IUserService userService;
         private readonly IMapper mapper;
+        private readonly UserManager<User> userManager;
 
-        public ProfileController(UserManager<Models.User> userManager, IUserService userService, IMapper mapper)
+        public ProfileController(IUserService userService, IMapper mapper, UserManager<User> userManager)
         {
-            this.userManager = userManager;
             this.userService = userService;
             this.mapper = mapper;
+            this.userManager = userManager;
         }
 
         [HttpGet("/donaterprofile")]
@@ -63,7 +65,7 @@ namespace buyforus.Controllers.Profile
         public async Task<IActionResult> EditOrgProfile()
         {
             var currentOrg = await userManager.GetUserAsync(HttpContext.User);
-            var organizationViewModel = mapper.Map<Models.User, OrganizationViewModel>(currentOrg);
+            var organizationViewModel = mapper.Map<User, OrganizationViewModel>(currentOrg);
             return View(organizationViewModel);
         }
 
