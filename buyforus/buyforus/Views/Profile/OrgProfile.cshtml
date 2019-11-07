@@ -22,7 +22,7 @@
             @*
             Ide kell egy if függvény
             *@
-            <a class="btn btn-outline-info" role="button" asp-controller="Profile" asp-action="EditDonaterProfile" asp-route-userId="@Model.User.Id">Edit</a>
+            <a class="btn btn-sm btn-outline-info" role="button" asp-controller="Profile" asp-action="EditDonaterProfile" asp-route-userId="@Model.User.Id">Edit</a>
             <span>Private informations</span>
             <ul>
                 <li>@Model.User.RepresentativeName</li>
@@ -36,6 +36,22 @@
         <div class="col-md-6">
             <h4>@Model.User.CharityType</h4>
             <p>@Model.User.Description</p>
+        </div>
+        <div class="col-md-6">
+            <p>Contact informations</p>
+            <ul>
+                <li>@Model.User.Email</li>
+                <li><a href="@Model.User.Website">@Model.User.CompanyName</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <a href="#">My Campaign</a>
+        </div>
+        <div class="col-md-6">
+            <h1>+</h1>
+            <a href="#">Add Campaign</a>
         </div>
     </div>
 </div>

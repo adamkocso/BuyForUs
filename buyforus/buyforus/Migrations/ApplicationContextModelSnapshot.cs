@@ -42,22 +42,22 @@ namespace buyforus.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a45295b1-8f16-4a03-a91a-8b842107117c",
-                            ConcurrencyStamp = "c7cda5d3-b2ab-4227-9027-8ddd0ea3b691",
+                            Id = "e0ec9969-18a2-4bec-8a38-7d5103652d25",
+                            ConcurrencyStamp = "e35d2932-a385-433c-ace1-05a5b28380c0",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "52169eba-228d-47a9-9ed8-b0bb613eddd8",
-                            ConcurrencyStamp = "e10db5bf-348e-49ad-a75c-57ce3097c1ea",
+                            Id = "7da4e7fc-19c3-4d3e-a391-159215abd360",
+                            ConcurrencyStamp = "f565f813-39ba-4b02-aaf1-79e87e0981bf",
                             Name = "Donator",
                             NormalizedName = "DONATOR"
                         },
                         new
                         {
-                            Id = "bbf84e8b-92bb-4a39-bb21-beec9673368d",
-                            ConcurrencyStamp = "edd29cfa-3c91-438d-8e03-3002b6770cfc",
+                            Id = "d8f41568-b624-4783-ba59-1de4ef96abe8",
+                            ConcurrencyStamp = "eb35f9a7-ed2a-4eb3-b79f-d6a1e34262cf",
                             Name = "Organization",
                             NormalizedName = "ORGANIZATION"
                         });
@@ -218,6 +218,8 @@ namespace buyforus.Migrations
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
+
+                    b.Property<string>("Website");
 
                     b.HasKey("Id");
 
