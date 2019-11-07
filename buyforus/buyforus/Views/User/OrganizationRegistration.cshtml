@@ -1,18 +1,64 @@
-﻿@model TModel
+﻿@model buyforus.ViewModels.OrganizationViewModel
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Donater Registration";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
+<h2>@ViewData["Title"]</h2>
+<div class="row">
+    <div class="col-md-12">
+        <h6>Please fill out the form!</h6>
+        <hr/>
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Email">Email</label>
+                <input asp-for="Email" class="form-control"/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyName">Company name</label>
+                <input asp-for="CompanyName" class="form-control"/>
+                <span asp-validation-for="CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password">Password</label>
+                <input asp-for="Password" class="form-control"/>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword">Confirm password</label>
+                <input asp-for="ConfirmPassword" class="form-control"/>
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaxNumber">Your company's Tax Number</label>
+                <input asp-for="TaxNumber" class="form-control"/>
+                <span asp-validation-for="TaxNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Headquarters">Name of your HQ</label>
+                <input asp-for="Headquarters" class="form-control"/>
+                <span asp-validation-for="Headquarters" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description">Description about your Co.</label>
+                <textarea asp-for="Description" rows="5" id="comment"></textarea>
+                <input asp-for="Description" class="form-control"/>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RepresentativeName">Name of Representative</label>
+                <input asp-for="RepresentativeName" class="form-control"/>
+                <span asp-validation-for="RepresentativeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CharityType">The type of your charity</label>
+                <input type="text" placeholder="Animal, Environmental, International, Education ..." 
+                       asp-for="CharityType" class="form-control"/>
+                <span asp-validation-for="CharityType" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-outline-info">Register</button>
+        </form>
+    </div>
 </div>
-</body>
-</html>

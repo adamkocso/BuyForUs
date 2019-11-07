@@ -1,7 +1,9 @@
-﻿namespace buyforus.Services
+﻿using System.Threading.Tasks;
+
+namespace buyforus.Services
 {
-    public class IUserService
+    public interface IUserService
     {
-        
+        Task LogoutAsync();
     }
 }
