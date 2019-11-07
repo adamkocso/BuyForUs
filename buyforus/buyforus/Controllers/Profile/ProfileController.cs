@@ -1,14 +1,25 @@
-﻿using buyforus.ViewModels;
+﻿using System.Threading.Tasks;
+using buyforus.ViewModels;
+using buyforus.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace buyforus.Controllers.Profile
 {
     public class ProfileController : Controller
     {
-        [HttpGet("/userprofile")]
-        public IActionResult UserProfile()
+        private readonly UserManager<Donater> donater;
+
+        public ProfileController(UserManager<Donater> donater)
         {
-            return View();
+            this.donater = donater;
+        }
+
+        [HttpGet("/donaterprofile")]
+        public async Task<IActionResult> DonaterProfile()
+        {
+            var currentDonater = await donater.GetUserAsync(HttpContext.User);
+            return View(new DonaterViewModel{Donater = currentDonater});
         }
 
         [HttpGet("/orgprofile")]
@@ -17,14 +28,14 @@ namespace buyforus.Controllers.Profile
             return View();
         }
 
-        [HttpGet("/edituserprofile")]
-        public IActionResult EditUserProfile()
+        [HttpGet("/editdonaterprofile")]
+        public IActionResult EditDonaterProfile()
         {
             return null;
         }
 
-        [HttpPost("/edituserprofile")]
-        public IActionResult EditUserProfile(UserProfileViewModel editUserProfile)
+        [HttpPost("/editdonaterprofile")]
+        public IActionResult EditDonaterProfile(DonaterViewModel editUserProfile)
         {
             return null;
         }
@@ -36,7 +47,7 @@ namespace buyforus.Controllers.Profile
         }
 
         [HttpPost("/editorgprofile")]
-        public IActionResult EditOrgProfile(OrgProfileViewModel editOrgProfile)
+        public IActionResult EditOrgProfile(OrganizationViewModel editOrgProfile)
         {
             return null;
         }
