@@ -27,12 +27,14 @@ namespace buyforus
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddIdentity<User, IdentityRole>()
-               .AddEntityFrameworkStores<ApplicationContext>();
 
+               .AddEntityFrameworkStores<ApplicationContext>();
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
             {
                 services.AddDbContext<ApplicationContext>(options =>
                     options.UseMySql(Configuration.GetConnectionString("ProductionConnection")));
+                services.AddIdentity<User, IdentityRole>()
+                    .AddEntityFrameworkStores<ApplicationContext>();
             }
             else
             {
