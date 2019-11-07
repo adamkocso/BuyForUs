@@ -39,12 +39,12 @@ namespace buyforus.Services
                 }
             }
 
-            if (userManager.FindByEmailAsync("user@gmail.com").Result == null)
+            if (userManager.FindByEmailAsync("donator@gmail.com").Result == null)
             {
                 User user = new User
                 {
-                    UserName = "User",
-                    Email = "user@gmail.com",
+                    UserName = "Donator",
+                    Email = "donator@gmail.com",
                 };
 
                 IdentityResult check = userManager.CreateAsync(user, "Password1234..").Result;
