@@ -9,5 +9,6 @@ namespace buyforus.Services
     public interface ICampaignService
     {
         Task<List<Campaign>> ListAllCampaignAsync();
+        Campaign findCampaignById(long campaignId);
     }
 }
