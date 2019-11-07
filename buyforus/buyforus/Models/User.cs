@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace buyforus.Models
 {
-    public class User:IdentityUser
+    public class User : IdentityUser
     {
         public List<Campaign> Campaigns { get; set; }
         public string CompanyName { get; set; }

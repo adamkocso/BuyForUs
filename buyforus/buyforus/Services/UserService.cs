@@ -29,7 +29,7 @@ namespace buyforus.Services
         {
             var donater = new User {UserName = model.Username, Email = model.Email};
             var result = await userManager.CreateAsync(donater, model.Password);
-            await userManager.AddToRoleAsync(donater, "Donater");
+            await userManager.AddToRoleAsync(donater, "Donator");
 
             return result;
         }

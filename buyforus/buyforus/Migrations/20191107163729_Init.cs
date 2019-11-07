@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace buyforus.Migrations
 {
-    public partial class bs : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -40,26 +40,17 @@ namespace buyforus.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    CompanyName = table.Column<string>(nullable: true),
+                    RepresentativeName = table.Column<string>(nullable: true),
+                    TaxNumber = table.Column<string>(nullable: true),
+                    Headquarters = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    CharityType = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Campaigns",
-                columns: table => new
-                {
-                    CampaignId = table.Column<long>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Title = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    ExpiredTime = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Campaigns", x => x.CampaignId);
                 });
 
             migrationBuilder.CreateTable(
@@ -168,20 +159,42 @@ namespace buyforus.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "9e1cafa8-6330-430e-90ef-e47e0df3bb3d", "d7a70984-75de-4d6d-b904-9080a5434a05", "Admin", "ADMIN" });
+            migrationBuilder.CreateTable(
+                name: "Campaigns",
+                columns: table => new
+                {
+                    CampaignId = table.Column<long>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Title = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    ExpiredTime = table.Column<DateTime>(nullable: false),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Campaigns", x => x.CampaignId);
+                    table.ForeignKey(
+                        name: "FK_Campaigns_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "1701cf8c-9cae-489f-a932-c842afd88eeb", "d1309e81-e40c-44c3-91b5-caa5edef3039", "Donator", "DONATOR" });
+                values: new object[] { "96e63e8a-978c-490b-b6e7-45b5675f20a5", "a06fb15e-dc94-4086-9d2c-2fb184b9b891", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "dbef8ed1-ecf6-47db-bcf7-abda59d749fd", "85ecb444-384b-4048-9366-59f25a7d5f82", "Organization", "ORGANIZATION" });
+                values: new object[] { "af925c4f-2c59-49a1-906a-27127b6c2085", "12cc462c-2a8b-4c99-897e-e379f9c87f94", "Donator", "DONATOR" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "bed0baa7-783a-4537-a54a-0e1cee7f8aa9", "a96274d3-b2eb-4d58-8763-76927ad46b4b", "Organization", "ORGANIZATION" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -219,6 +232,11 @@ namespace buyforus.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Campaigns_UserId",
+                table: "Campaigns",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

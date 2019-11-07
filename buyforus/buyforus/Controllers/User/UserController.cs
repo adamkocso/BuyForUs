@@ -10,10 +10,10 @@ namespace buyforus.Controllers.User
 {
     public class UserController : Controller
     {
-        private readonly UserService userService;
+        private readonly IUserService userService;
         private readonly UserManager<Models.User> userManager;
 
-        public UserController(UserService userService, UserManager<Models.User> userManager)
+        public UserController(IUserService userService, UserManager<Models.User> userManager)
         {
             this.userService = userService;
             this.userManager = userManager;

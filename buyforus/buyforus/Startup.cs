@@ -29,6 +29,11 @@ namespace buyforus
         {
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationContext>();
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
 
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
             {
@@ -46,6 +51,8 @@ namespace buyforus
             services.BuildServiceProvider().GetService<ApplicationContext>().Database.Migrate();
             services.AddTransient<ICampaignService, CampaignService>();
             services.SetUpAutoMapper();
+            services.AddTransient<IImageService, ImageService>();
+            services.AddTransient<IBlobService, BlobService>();
             services.AddMvc();
         }
 
