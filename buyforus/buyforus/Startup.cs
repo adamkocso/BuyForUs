@@ -26,6 +26,8 @@ namespace buyforus
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationContext>();
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
             {
                 services.AddDbContext<ApplicationContext>(options =>
