@@ -12,6 +12,7 @@ namespace buyforus.Services.Helpers.AutoMapper
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new UserFromOrganizationViewModel());
+                cfg.AddProfile(new OrganizationViewModelFromUser());
                 
             });
 
