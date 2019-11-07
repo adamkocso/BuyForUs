@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace buyforus.Controllers
+namespace buyforus.Controllers.Landing
 {
     public class LandingController : Controller
     {
