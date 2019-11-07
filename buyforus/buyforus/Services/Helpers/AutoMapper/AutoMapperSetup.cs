@@ -13,7 +13,6 @@ namespace buyforus.Services.Helpers.AutoMapper
             {
                 cfg.AddProfile(new UserFromOrganizationViewModel());
                 cfg.AddProfile(new OrganizationViewModelFromUser());
-                
             });
 
             var mapper = config.CreateMapper();

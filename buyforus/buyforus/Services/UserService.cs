@@ -52,7 +52,6 @@ namespace buyforus.Services
             mapper.Map(model, user);
             applicationContext.Users.Update(user);
             await applicationContext.SaveChangesAsync();
-            
         }
 
         public async Task<IdentityResult> RegisterAsync(OrganizationViewModel model)
@@ -89,5 +88,4 @@ namespace buyforus.Services
             return errors;
         }
     }
-    
 }
