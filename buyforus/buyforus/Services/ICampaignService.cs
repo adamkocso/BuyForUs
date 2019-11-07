@@ -11,5 +11,6 @@ namespace buyforus.Services
     {
         Task<List<Campaign>> ListAllCampaignAsync();
         Task DecrementProductAmount(ApiViewModel model);
+        Task<Campaign> FindCampaignByIdAsync(long campaignId);
     }
 }
