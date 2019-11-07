@@ -1,17 +1,18 @@
 ﻿using System.Threading.Tasks;
 using buyforus.Controllers.Home;
+using buyforus.Models;
 using buyforus.Services;
 using buyforus.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace buyforus.Controllers.User
+namespace buyforus.Controllers
 {
     public class UserController : Controller
     {
         private readonly IUserService userService;
-        private readonly UserManager<Models.User> userManager;
+        private readonly UserManager<User> userManager;
 
         public UserController(IUserService userService, UserManager<Models.User> userManager)
         {

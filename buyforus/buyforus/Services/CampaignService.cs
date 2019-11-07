@@ -16,6 +16,12 @@ namespace buyforus.Services
             this.applicationContext = applicationContext;
         }
 
+        public async Task<Campaign> FindCampaignByIdAsync(long campaignId)
+        {
+            var campaign = await applicationContext.Campaigns.SingleOrDefaultAsync(x => x.CampaignId == campaignId);
+            return campaign;
+        }
+
         public async Task<List<Campaign>> ListAllCampaignAsync()
         {
             var campaigns = await applicationContext.Campaigns.ToListAsync();
