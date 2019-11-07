@@ -28,7 +28,7 @@ namespace buyforus
         {
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationContext>();
-            
+
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
             {
                 services.AddDbContext<ApplicationContext>(options =>
@@ -43,6 +43,7 @@ namespace buyforus
             services.AddTransient<IUserService, UserService>();
             
             services.BuildServiceProvider().GetService<ApplicationContext>().Database.Migrate();
+            services.AddTransient<ICampaignService, CampaignService>();
             services.AddMvc();
         }
 
