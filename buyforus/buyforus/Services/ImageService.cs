@@ -18,31 +18,31 @@ namespace buyforus.Services
             this.blobService = blobService;
         }
 
-        public List<string> Validate(IFormFileCollection files, ViewModel newHotel)
-        {
-            foreach (var file in files)
-            {
-                if (CheckImageExtension(file))
-                {
-                    if (file.Length < fourMegaByte)
-                    {
-                        return newHotel.ErrorMessages;
-                    }
-                    else
-                    {
-                        newHotel.ErrorMessages.Add("The image max 4 MB");
-                        return newHotel.ErrorMessages;
-                    }
-                }
-                else
-                {
-                    newHotel.ErrorMessages.Add("Please add only image formats!");
-                    return newHotel.ErrorMessages;
-                }
-            }
+        //public List<string> Validate(IFormFileCollection files, ViewModel newHotel)
+        //{
+        //    foreach (var file in files)
+        //    {
+        //        if (CheckImageExtension(file))
+        //        {
+        //            if (file.Length < fourMegaByte)
+        //            {
+        //                return newHotel.ErrorMessages;
+        //            }
+        //            else
+        //            {
+        //                newHotel.ErrorMessages.Add("The image max 4 MB");
+        //                return newHotel.ErrorMessages;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            newHotel.ErrorMessages.Add("Please add only image formats!");
+        //            return newHotel.ErrorMessages;
+        //        }
+        //    }
 
-            return newHotel.ErrorMessages;
-        }
+        //    return newHotel.ErrorMessages;
+        //}
 
         public async Task UploadAsync(IFormFileCollection files, long hotelId)
         {

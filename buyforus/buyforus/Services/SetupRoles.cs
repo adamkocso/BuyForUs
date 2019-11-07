@@ -51,7 +51,7 @@ namespace buyforus.Services
 
                 if (check.Succeeded)
                 {
-                    userManager.AddToRoleAsync(user, "User").Wait();
+                    userManager.AddToRoleAsync(user, "Donator").Wait();
                 }
             }
         }
