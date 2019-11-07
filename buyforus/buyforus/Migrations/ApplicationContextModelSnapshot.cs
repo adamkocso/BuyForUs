@@ -42,22 +42,22 @@ namespace buyforus.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "efd02d2b-d5be-48a2-bdb5-3962be15c5fb",
-                            ConcurrencyStamp = "d2687d74-fcc1-489a-b71d-d651b5843f7f",
+                            Id = "96e63e8a-978c-490b-b6e7-45b5675f20a5",
+                            ConcurrencyStamp = "a06fb15e-dc94-4086-9d2c-2fb184b9b891",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "ed022b88-2aa2-461c-83e3-b56bf255bc5c",
-                            ConcurrencyStamp = "afb9ca45-95fd-40c9-9b64-eec522bf6332",
+                            Id = "af925c4f-2c59-49a1-906a-27127b6c2085",
+                            ConcurrencyStamp = "12cc462c-2a8b-4c99-897e-e379f9c87f94",
                             Name = "Donator",
                             NormalizedName = "DONATOR"
                         },
                         new
                         {
-                            Id = "813d1c5b-f3da-4b78-aa10-b88f64436f8a",
-                            ConcurrencyStamp = "b10f0171-64af-4af0-a1e5-cce5243e2fc6",
+                            Id = "bed0baa7-783a-4537-a54a-0e1cee7f8aa9",
+                            ConcurrencyStamp = "a96274d3-b2eb-4d58-8763-76927ad46b4b",
                             Name = "Organization",
                             NormalizedName = "ORGANIZATION"
                         });
@@ -156,31 +156,39 @@ namespace buyforus.Migrations
 
                     b.Property<DateTime>("ExpiredTime");
 
-                    b.Property<string>("OrganizationId");
-
                     b.Property<string>("Title");
+
+                    b.Property<string>("UserId");
 
                     b.HasKey("CampaignId");
 
-                    b.HasIndex("OrganizationId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Campaigns");
                 });
 
-            modelBuilder.Entity("buyforus.Models.Donater", b =>
+            modelBuilder.Entity("buyforus.Models.User", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AccessFailedCount");
 
+                    b.Property<string>("CharityType");
+
+                    b.Property<string>("CompanyName");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
+
+                    b.Property<string>("Description");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<string>("Headquarters");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -198,7 +206,11 @@ namespace buyforus.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
+                    b.Property<string>("RepresentativeName");
+
                     b.Property<string>("SecurityStamp");
+
+                    b.Property<string>("TaxNumber");
 
                     b.Property<bool>("TwoFactorEnabled");
 
@@ -217,44 +229,6 @@ namespace buyforus.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("buyforus.Models.Organization", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AccessFailedCount");
-
-                    b.Property<string>("ConcurrencyStamp");
-
-                    b.Property<string>("Email");
-
-                    b.Property<bool>("EmailConfirmed");
-
-                    b.Property<bool>("LockoutEnabled");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<string>("NormalizedEmail");
-
-                    b.Property<string>("NormalizedUserName");
-
-                    b.Property<string>("PasswordHash");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<bool>("PhoneNumberConfirmed");
-
-                    b.Property<string>("SecurityStamp");
-
-                    b.Property<bool>("TwoFactorEnabled");
-
-                    b.Property<string>("UserName");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Organizations");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -265,7 +239,7 @@ namespace buyforus.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("buyforus.Models.Donater")
+                    b.HasOne("buyforus.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -273,7 +247,7 @@ namespace buyforus.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("buyforus.Models.Donater")
+                    b.HasOne("buyforus.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -286,7 +260,7 @@ namespace buyforus.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("buyforus.Models.Donater")
+                    b.HasOne("buyforus.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -294,7 +268,7 @@ namespace buyforus.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("buyforus.Models.Donater")
+                    b.HasOne("buyforus.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -302,9 +276,9 @@ namespace buyforus.Migrations
 
             modelBuilder.Entity("buyforus.Models.Campaign", b =>
                 {
-                    b.HasOne("buyforus.Models.Organization")
+                    b.HasOne("buyforus.Models.User")
                         .WithMany("Campaigns")
-                        .HasForeignKey("OrganizationId");
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }
