@@ -1,56 +1,73 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+
+<!DOCTYPE html>
 
 <html>
 <head>
-  <meta name="viewport" content="width=device-width" />
-  <title>@ViewBag.Title</title>
-  <meta name="viewport" content="width-device-width" />
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-  <link href="~/css/StyleSheet.css" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width-device-width" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link href="~/css/StyleSheet.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 </head>
 
 <body>
 
-<nav class="navbar sticky-top navbar-light bg-light">
-  
-  <a class="navbar-brand" asp-action="Index" asp-controller="Home">
-     <img src="~/images/buyforus.png" height="40" width="120">
-  </a>
-  <div class="nav-item dropdown" id="navbarDropdown">
-    <a class="navbar-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <span class="navbar-toggler-icon"></span>
-      </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <a class="dropdown-item" asp-controller="Home" asp-action="Index">Home page</a>
-      <a class="dropdown-item" asp-controller="" asp-action="">My profile</a>
-      <a class="dropdown-item" asp-controller="" asp-action="">Manage campaigns</a>
-      <a class="dropdown-item" asp-controller="" asp-action="">Logout</a>
+    <nav class="navbar sticky-top navbar-light bg-light">
+
+        <a class="navbar-brand" asp-action="Index" asp-controller="Home">
+            <img src="~/images/buyforus.png" height="40" width="120">
+        </a>
+        <div class="nav-item dropdown" id="navbarDropdown">
+            <a class="navbar-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <a class="dropdown-item" asp-controller="Home" asp-action="Index">Home page</a>
+                    @if (User.IsInRole("Donator"))
+                    {
+                        <a class="dropdown-item" asp-controller="Profile" asp-action="DonateProfile">My profile</a>
+
+                    }
+
+                    @if (User.IsInRole("Organization"))
+                    {
+                        <a class="dropdown-item" asp-controller="Profile" asp-action="OrgProfile">My profile</a>
+                        <a class="dropdown-item" asp-controller="Campaign" asp-action="CampaignInfo">Manage campaigns</a>
+
+                    }
+                    <a class="dropdown-item" asp-controller="User" asp-action="Logout">Logout</a>
+                }
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-body">
+        @RenderBody()
     </div>
-    </div>
-</nav>
 
-<div class="container-body">
-  @RenderBody()
-</div>
+    <footer class="page-footer font-small light">
+        <div class="footer-copyright text-center py-3">
+            © @DateTime.Now.Year Copyright:
+            <a href="#"> Garnet Crew From Tetris</a>
+        </div>
+    </footer>
 
-<footer class="page-footer font-small light">
-  <div class="footer-copyright text-center py-3">© @DateTime.Now.Year Copyright:
-    <a href="#"> Garnet Crew From Tetris</a>
-  </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </body>
 </html>
