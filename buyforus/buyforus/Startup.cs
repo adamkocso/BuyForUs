@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using buyforus.Models;
 using buyforus.Services;
+using buyforus.Services.Helpers.AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -44,6 +45,7 @@ namespace buyforus
             
             services.BuildServiceProvider().GetService<ApplicationContext>().Database.Migrate();
             services.AddTransient<ICampaignService, CampaignService>();
+            services.SetUpAutoMapper();
             services.AddMvc();
         }
 
