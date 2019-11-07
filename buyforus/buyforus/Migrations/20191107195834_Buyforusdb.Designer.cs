@@ -9,7 +9,7 @@ using buyforus;
 namespace buyforus.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20191107185835_Buyforusdb")]
+    [Migration("20191107195834_Buyforusdb")]
     partial class Buyforusdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,22 +44,22 @@ namespace buyforus.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3c69650f-9eeb-4af1-8201-b18d8116a9b7",
-                            ConcurrencyStamp = "7edcd241-4a14-4951-8c01-e0ce6af0910f",
+                            Id = "b3f1c933-6421-4902-8ea1-44573f7e74a5",
+                            ConcurrencyStamp = "4c0c0086-e384-4ed7-bd97-2457e24efbbb",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "df75f2fc-305b-4421-91cb-6ef16fb16d9c",
-                            ConcurrencyStamp = "949261c1-9549-4bb0-b73d-54654712bbec",
+                            Id = "7c65bb96-35e7-42a9-b4a8-b8807ec487af",
+                            ConcurrencyStamp = "d793a816-14ed-41f7-b9b9-6f1d6892b779",
                             Name = "Donator",
                             NormalizedName = "DONATOR"
                         },
                         new
                         {
-                            Id = "c71c3988-47cb-4759-9242-2a2f9633949c",
-                            ConcurrencyStamp = "6a3eff16-4b10-44a8-ab2c-c7ca687b81dc",
+                            Id = "c8a348ef-2a74-4df0-ae24-f1c33520f8ed",
+                            ConcurrencyStamp = "3caf240b-b99f-460e-aac9-1765ab23e2f0",
                             Name = "Organization",
                             NormalizedName = "ORGANIZATION"
                         });
@@ -156,7 +156,7 @@ namespace buyforus.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<DateTime>("ExpiryTime");
+                    b.Property<DateTime>("ExpiryDate");
 
                     b.Property<string>("Title");
 

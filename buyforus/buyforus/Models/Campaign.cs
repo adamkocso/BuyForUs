@@ -10,8 +10,9 @@ namespace buyforus.Models
         public long CampaignId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public DateTime ExpiryTime { get; set; }
+        public DateTime ExpiryDate { get; set; }
         public int TotalPrice { get; set; }
         public List<Product> Products { get; set; }
+        public string UserId { get; set; }
     }
 }

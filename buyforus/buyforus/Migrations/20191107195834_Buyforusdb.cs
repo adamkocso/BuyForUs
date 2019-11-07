@@ -169,7 +169,7 @@ namespace buyforus.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    ExpiryTime = table.Column<DateTime>(nullable: false),
+                    ExpiryDate = table.Column<DateTime>(nullable: false),
                     TotalPrice = table.Column<int>(nullable: false),
                     UserId = table.Column<string>(nullable: true)
                 },
@@ -209,17 +209,17 @@ namespace buyforus.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "3c69650f-9eeb-4af1-8201-b18d8116a9b7", "7edcd241-4a14-4951-8c01-e0ce6af0910f", "Admin", "ADMIN" });
+                values: new object[] { "b3f1c933-6421-4902-8ea1-44573f7e74a5", "4c0c0086-e384-4ed7-bd97-2457e24efbbb", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "df75f2fc-305b-4421-91cb-6ef16fb16d9c", "949261c1-9549-4bb0-b73d-54654712bbec", "Donator", "DONATOR" });
+                values: new object[] { "7c65bb96-35e7-42a9-b4a8-b8807ec487af", "d793a816-14ed-41f7-b9b9-6f1d6892b779", "Donator", "DONATOR" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "c71c3988-47cb-4759-9242-2a2f9633949c", "6a3eff16-4b10-44a8-ab2c-c7ca687b81dc", "Organization", "ORGANIZATION" });
+                values: new object[] { "c8a348ef-2a74-4df0-ae24-f1c33520f8ed", "3caf240b-b99f-460e-aac9-1765ab23e2f0", "Organization", "ORGANIZATION" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

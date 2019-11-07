@@ -1,4 +1,4 @@
-body{
+body {
     height: 100%;
     background-color: rgb(255, 242, 237);
     background-blend-mode: overlay;
@@ -11,4 +11,8 @@ nav{
 
 nav.dropdown-item{
     opacity: 0.3%;
+}
+#add-campaign{
+    border: 2px solid;
+    border-radius: 5px;
 }
