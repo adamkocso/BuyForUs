@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace buyforus.Migrations
 {
-    public partial class initial : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -40,36 +40,17 @@ namespace buyforus.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    CompanyName = table.Column<string>(nullable: true),
+                    RepresentativeName = table.Column<string>(nullable: true),
+                    TaxNumber = table.Column<string>(nullable: true),
+                    Headquarters = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    CharityType = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Organizations",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    UserName = table.Column<string>(nullable: true),
-                    NormalizedUserName = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    NormalizedEmail = table.Column<string>(nullable: true),
-                    EmailConfirmed = table.Column<bool>(nullable: false),
-                    PasswordHash = table.Column<string>(nullable: true),
-                    SecurityStamp = table.Column<string>(nullable: true),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
-                    LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Organizations", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -187,15 +168,15 @@ namespace buyforus.Migrations
                     Title = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     ExpiredTime = table.Column<DateTime>(nullable: false),
-                    OrganizationId = table.Column<string>(nullable: true)
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Campaigns", x => x.CampaignId);
                     table.ForeignKey(
-                        name: "FK_Campaigns_Organizations_OrganizationId",
-                        column: x => x.OrganizationId,
-                        principalTable: "Organizations",
+                        name: "FK_Campaigns_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -203,17 +184,17 @@ namespace buyforus.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "efd02d2b-d5be-48a2-bdb5-3962be15c5fb", "d2687d74-fcc1-489a-b71d-d651b5843f7f", "Admin", "ADMIN" });
+                values: new object[] { "96e63e8a-978c-490b-b6e7-45b5675f20a5", "a06fb15e-dc94-4086-9d2c-2fb184b9b891", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "ed022b88-2aa2-461c-83e3-b56bf255bc5c", "afb9ca45-95fd-40c9-9b64-eec522bf6332", "Donator", "DONATOR" });
+                values: new object[] { "af925c4f-2c59-49a1-906a-27127b6c2085", "12cc462c-2a8b-4c99-897e-e379f9c87f94", "Donator", "DONATOR" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "813d1c5b-f3da-4b78-aa10-b88f64436f8a", "b10f0171-64af-4af0-a1e5-cce5243e2fc6", "Organization", "ORGANIZATION" });
+                values: new object[] { "bed0baa7-783a-4537-a54a-0e1cee7f8aa9", "a96274d3-b2eb-4d58-8763-76927ad46b4b", "Organization", "ORGANIZATION" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -253,9 +234,9 @@ namespace buyforus.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Campaigns_OrganizationId",
+                name: "IX_Campaigns_UserId",
                 table: "Campaigns",
-                column: "OrganizationId");
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -283,9 +264,6 @@ namespace buyforus.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Organizations");
         }
     }
 }

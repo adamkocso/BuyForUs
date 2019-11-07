@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using buyforus.Models;
 using buyforus.Services;
+using buyforus.Services.Helpers.AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -27,14 +28,17 @@ namespace buyforus
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationContext>();
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
 
-               .AddEntityFrameworkStores<ApplicationContext>();
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
             {
                 services.AddDbContext<ApplicationContext>(options =>
                     options.UseMySql(Configuration.GetConnectionString("ProductionConnection")));
-                services.AddIdentity<User, IdentityRole>()
-                    .AddEntityFrameworkStores<ApplicationContext>();
             }
             else
             {
@@ -42,8 +46,11 @@ namespace buyforus
                     builder.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
             }
 
+            services.AddTransient<IUserService, UserService>();
+            
             services.BuildServiceProvider().GetService<ApplicationContext>().Database.Migrate();
             services.AddTransient<ICampaignService, CampaignService>();
+            services.SetUpAutoMapper();
             services.AddTransient<IImageService, ImageService>();
             services.AddTransient<IBlobService, BlobService>();
             services.AddMvc();
