@@ -42,22 +42,22 @@ namespace buyforus.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "96e63e8a-978c-490b-b6e7-45b5675f20a5",
-                            ConcurrencyStamp = "a06fb15e-dc94-4086-9d2c-2fb184b9b891",
+                            Id = "e0ec9969-18a2-4bec-8a38-7d5103652d25",
+                            ConcurrencyStamp = "e35d2932-a385-433c-ace1-05a5b28380c0",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "af925c4f-2c59-49a1-906a-27127b6c2085",
-                            ConcurrencyStamp = "12cc462c-2a8b-4c99-897e-e379f9c87f94",
+                            Id = "7da4e7fc-19c3-4d3e-a391-159215abd360",
+                            ConcurrencyStamp = "f565f813-39ba-4b02-aaf1-79e87e0981bf",
                             Name = "Donator",
                             NormalizedName = "DONATOR"
                         },
                         new
                         {
-                            Id = "bed0baa7-783a-4537-a54a-0e1cee7f8aa9",
-                            ConcurrencyStamp = "a96274d3-b2eb-4d58-8763-76927ad46b4b",
+                            Id = "d8f41568-b624-4783-ba59-1de4ef96abe8",
+                            ConcurrencyStamp = "eb35f9a7-ed2a-4eb3-b79f-d6a1e34262cf",
                             Name = "Organization",
                             NormalizedName = "ORGANIZATION"
                         });
@@ -214,8 +214,12 @@ namespace buyforus.Migrations
 
                     b.Property<bool>("TwoFactorEnabled");
 
+                    b.Property<string>("Uri");
+
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
+
+                    b.Property<string>("Website");
 
                     b.HasKey("Id");
 
