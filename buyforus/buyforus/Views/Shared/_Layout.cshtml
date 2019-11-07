@@ -33,15 +33,25 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" asp-controller="Home" asp-action="Index">Home page</a>
-                        <a class="dropdown-item" asp-controller="" asp-action="">My profile</a>
-                        <a class="dropdown-item" asp-controller="" asp-action="">Manage campaigns</a>
-                        <a class="dropdown-item" asp-controller="" asp-action="">Logout</a>
+                        @if (User.IsInRole("Donator"))
+                        {
+                            <a class="dropdown-item" asp-controller="Profile" asp-action="DonateProfile">My profile</a>
+
+                        }
+
+                        @if (User.IsInRole("Organization"))
+                        {
+                            <a class="dropdown-item" asp-controller="Profile" asp-action="OrgProfile">My profile</a>
+                            <a class="dropdown-item" asp-controller="Campaign" asp-action="CampaignInfo">Manage campaigns</a>
+
+                        }
+                        <a class="dropdown-item" asp-controller="User" asp-action="Logout">Logout</a>
                     </div>
                 </div>
             }
             else
             {
-                <a asp-controller="User" asp-action="Login" class="btn">Login</a>
+                <a asp-controller="User" asp-action="Login" class="btn bg-light">Login</a>
             }
         </div>
     </nav>

@@ -42,22 +42,22 @@ namespace buyforus.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a56b082a-427c-46fb-b10b-c60dc696ae87",
-                            ConcurrencyStamp = "45b39821-b3f3-411f-9abb-a4f1914ab21e",
+                            Id = "fc1105e0-7ea9-476b-bc7f-8c09b8fc65ff",
+                            ConcurrencyStamp = "45ef1bc0-e6f7-4efe-9c40-c148b4019804",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "9bb347aa-26ef-4582-8d74-ab9bc3a671d2",
-                            ConcurrencyStamp = "7f50d343-4618-44a0-8f73-b3d29b4be9c0",
+                            Id = "f6745aaf-f46d-4381-bf56-53368543361e",
+                            ConcurrencyStamp = "21a4b7c9-ffb7-4f28-a2c3-902ea5b6c7c9",
                             Name = "Donator",
                             NormalizedName = "DONATOR"
                         },
                         new
                         {
-                            Id = "d1bfab15-dccc-4878-ac16-cf16d41a9654",
-                            ConcurrencyStamp = "4e486a8b-8899-4a23-838e-4c4d2791ff01",
+                            Id = "52363be9-ba4c-4360-b2ef-a2151f5df36d",
+                            ConcurrencyStamp = "7635c006-c1a9-4f45-b075-78c4cdcf2919",
                             Name = "Organization",
                             NormalizedName = "ORGANIZATION"
                         });
