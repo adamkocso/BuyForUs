@@ -44,6 +44,8 @@ namespace buyforus
 
             services.BuildServiceProvider().GetService<ApplicationContext>().Database.Migrate();
             services.AddTransient<ICampaignService, CampaignService>();
+            services.AddTransient<IImageService, ImageService>();
+            services.AddTransient<IBlobService, BlobService>();
             services.AddMvc();
         }
 

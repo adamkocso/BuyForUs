@@ -1,9 +1,5 @@
 ﻿using buyforus.Models;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace buyforus.Services
 {
@@ -55,7 +51,7 @@ namespace buyforus.Services
 
                 if (check.Succeeded)
                 {
-                    userManager.AddToRoleAsync(user, "User").Wait();
+                    userManager.AddToRoleAsync(user, "Donator").Wait();
                 }
             }
         }
