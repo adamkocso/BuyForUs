@@ -30,6 +30,8 @@ namespace buyforus
             {
                 services.AddDbContext<ApplicationContext>(options =>
                     options.UseMySql(Configuration.GetConnectionString("ProductionConnection")));
+                services.AddIdentity<User, IdentityRole>()
+                    .AddEntityFrameworkStores<ApplicationContext>();
             }
             else
             {
