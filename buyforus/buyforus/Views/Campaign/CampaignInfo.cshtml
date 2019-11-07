@@ -10,7 +10,7 @@
         <img src="@Model.User.Uri" />
     }
     <h1>@Model.Campaign.Title</h1>
-    <h2>@Model.Campaign.ExpiryTime</h2>
+    <h2 id="date"></h2>
     <h2>@Model.Campaign.TotalPrice</h2>
     @if (Model.Campaign.Products != null) {
         <table>
@@ -36,3 +36,21 @@
     }
     <h1>No products</h1>
 </div>
+
+<script>
+var countDownDate = new Date("@Model.Campaign.ExpiryTime.ToString()").getTime();
+var x = setInterval(function() {
+var now = new Date().getTime();
+var distance = countDownDate - now;
+var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    document.getElementById("date").innerHTML = days + " days " + hours + " hours "
+    + minutes + " minutes " + seconds + " seconds ";
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("date").innerHTML = "EXPIRED";
+  }
+}, 10);
+</script>
