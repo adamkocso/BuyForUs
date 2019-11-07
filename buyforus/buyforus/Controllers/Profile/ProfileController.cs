@@ -12,7 +12,7 @@ namespace buyforus.Controllers
     {
         private readonly UserManager<User> userManager;
 
-        public ProfileController(UserManager<Models.User> userManager)
+        public ProfileController(UserManager<User> userManager)
         {
             this.userManager = userManager;
         }
