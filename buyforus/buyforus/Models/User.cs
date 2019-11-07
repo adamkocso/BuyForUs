@@ -16,5 +16,6 @@ namespace buyforus.Models
         public string Description { get; set; }
         public string CharityType { get; set; }
         public List<Campaign> Campaigns { get; set; }
+
     }
 }
