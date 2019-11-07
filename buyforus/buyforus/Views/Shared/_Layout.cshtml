@@ -18,48 +18,29 @@
 
 <body>
 
-<nav class="navbar sticky-top navbar-light red lighten-1">
+<nav class="navbar sticky-top navbar-light bg-light">
   
   <a class="navbar-brand" asp-action="Index" asp-controller="Home">
+     <img src="~/images/buyforus.png" height="40" width="120">
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-          aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="basicExampleNav">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-           aria-haspopup="true" aria-expanded="false">My Profile</a>
-        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Edit profile</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-           aria-haspopup="true" aria-expanded="false">My Campaigne</a>
-        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Add campaign</a>
-          <a class="dropdown-item" href="#">Manage campaign</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Logout</a>
-      </li>
-    </ul>
-  </div>
+  <div class="nav-item dropdown" id="navbarDropdown">
+    <a class="navbar-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="navbar-toggler-icon"></span>
+      </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" asp-controller="Home" asp-action="Index">Home page</a>
+      <a class="dropdown-item" asp-controller="" asp-action="">My profile</a>
+      <a class="dropdown-item" asp-controller="" asp-action="">Manage campaigns</a>
+      <a class="dropdown-item" asp-controller="" asp-action="">Logout</a>
+    </div>
+    </div>
 </nav>
 
 <div class="container-body">
   @RenderBody()
 </div>
 
-<footer class="page-footer font-small red lighten-1">
+<footer class="page-footer font-small light">
   <div class="footer-copyright text-center py-3">© @DateTime.Now.Year Copyright:
     <a href="#"> Garnet Crew From Tetris</a>
   </div>
