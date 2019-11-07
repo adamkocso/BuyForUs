@@ -31,16 +31,16 @@ namespace buyforus.Services
             var result = await userManager.CreateAsync(donater, model.Password);
             if (result.Succeeded)
             {
-                await userManager.AddToRoleAsync(donater, "DONATOR");
+                await userManager.AddToRoleAsync(donater, "Donator");
                 return result;
             }
 
             return result;
         }
 
-        public void WithdrawMoney(ApiViewModel model)
+        public async Task WithdrawMoneyAsync(ApiViewModel model)
         {
-            
+            var user = await userManager.FindByNameAsync(model.UserName);
         }
 
         public async Task<IdentityResult> RegisterAsync(OrganizationViewModel model)

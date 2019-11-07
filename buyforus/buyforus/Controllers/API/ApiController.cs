@@ -21,7 +21,7 @@ namespace buyforus.Controllers.API
         public ActionResult Donation([FromBody] ApiViewModel model)
         {
             campaignService.DecrementProductAmount(model);
-            userService.WithdrawMoney(model);
+//            userService.WithdrawMoney(model);
             
             return new OkObjectResult($"Your donation has been placed! Thank you!");
         }

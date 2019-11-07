@@ -11,6 +11,6 @@ namespace buyforus.Services
         Task<List<string>> LoginAsync(LoginViewModel model);
         Task<IdentityResult> RegisterAsync(OrganizationViewModel model);
         Task<IdentityResult> RegisterAsync(DonaterViewModel model);
-        void WithdrawMoney(ApiViewModel model);
+        Task WithdrawMoneyAsync(ApiViewModel model);
     }
 }
