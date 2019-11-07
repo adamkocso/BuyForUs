@@ -29,7 +29,11 @@ namespace buyforus.Services
         {
             var donater = new User {UserName = model.Username, Email = model.Email};
             var result = await userManager.CreateAsync(donater, model.Password);
-            await userManager.AddToRoleAsync(donater, "Donator");
+            if (result.Succeeded)
+            {
+                await userManager.AddToRoleAsync(donater, "DONATOR");
+                return result;
+            }
 
             return result;
         }
@@ -38,7 +42,10 @@ namespace buyforus.Services
         {
             var organization = mapper.Map<OrganizationViewModel, User>(model);
             var result = await userManager.CreateAsync(organization, model.Password);
-            await userManager.AddToRoleAsync(organization, "Organization");
+            if (result.Succeeded)
+            {
+                await userManager.AddToRoleAsync(organization, "Organization");
+            }
 
             return result;
         }
