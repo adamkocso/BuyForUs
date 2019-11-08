@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace buyforus.Migrations
 {
-    public partial class Buyforusdb : Migration
+    public partial class CreateInitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -209,17 +209,17 @@ namespace buyforus.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "5b585415-59c6-41c0-917e-6ea422f2b7cd", "8965d4c1-95ad-41bb-a0e9-d603900d9e3b", "Admin", "ADMIN" });
+                values: new object[] { "8fe502ee-7ee8-45fb-9953-2e9b3f2b86fc", "ecc7b797-bf0a-4a33-9657-8cf0679ebe59", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "15b7a087-a108-4c70-8615-a714dd94b018", "fe5bf5a3-c8db-4237-a6eb-9cb2b0025b2a", "Donator", "DONATOR" });
+                values: new object[] { "753db655-6e47-430d-b4bc-1ff93476d665", "b37e3af3-e527-449f-abea-beec58ba42bd", "Donator", "DONATOR" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "84543b5f-5a7a-4df5-b34d-aaa7ae083343", "7a8c50e2-4c85-40e1-9ce3-52b7e833a759", "Organization", "ORGANIZATION" });
+                values: new object[] { "de3bae7f-4096-4d22-aefd-9a4abd355d96", "cf8e8fef-20a0-4a7a-b5b8-e78f47d07e5d", "Organization", "ORGANIZATION" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

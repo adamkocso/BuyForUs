@@ -30,12 +30,18 @@ namespace buyforus.Controllers
             var currentDonater = await userManager.GetUserAsync(HttpContext.User);
             return View(new UserViewModel{User = currentDonater});
         }
-
         [HttpGet("/orgprofile")]
         public async Task<IActionResult> OrgProfile()
         {
             var currentOrg = await userManager.GetUserAsync(HttpContext.User);
-            return View(new UserViewModel{User = currentOrg});
+            return View(new UserViewModel{User = currentOrg, OwnerId = currentOrg.Id});
+        }
+
+        [HttpGet("/vieworgprofile/{ownerId}")]
+        public async Task<IActionResult> ViewOrgProfile(string ownerId)
+        {
+            var currentOrg = await userManager.GetUserAsync(HttpContext.User);
+            return View("OrgProfile", new UserViewModel{User = currentOrg, OwnerId = ownerId});
         }
 
         [HttpGet("/editdonaterprofile")]

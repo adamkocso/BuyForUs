@@ -2,25 +2,33 @@
 @{
     ViewData["Title"] = "Profile";
 }
-
-<h1>Profile</h1>
-
-<div>
+<div class="container">
+    <br/>
     <div class="row">
-        <div class="col-md-3">
-            @if (Model.User.Uri == null)
-            {
-                <img src="images/donater-default.png" />
-            }
-            else
-            {
-                <img src="@Model.User.Uri"/>
-            }
+        <div class="col-md-3"></div>
+        <div class="card col-md-6">
+             <br/>
+             <div class="row no-gutters">
+                 <div class="col-md-6">
+                     @if (Model.User.Uri == null)
+                     {
+                         <img src="images/donater-default.png"/>
+                     }
+                     else
+                     {
+                         <img src="@Model.User.Uri" class="my-image"/>
+                     }
+                 </div>
+                 <div class="col-md-6">
+                     <br/>
+                     <h3>@Model.User.UserName</h3>
+                     <h5>@Model.User.Email</h5>
+                     <a class="btn btn-sm btn-outline-info" role="button" asp-controller="Profile" asp-action="EditDonaterProfile" asp-route-userId="@Model.User.Id">Edit</a>
+                 </div>
+             </div>
+             <br/>
         </div>
-        <div class="col-md-9">
-            <h3>@Model.User.UserName</h3>
-            <h5>@Model.User.Email</h5>
-            <a class="btn btn-sm btn-outline-info" role="button" asp-controller="Profile" asp-action="EditDonaterProfile" asp-route-userId="@Model.User.Id">Edit</a>
-        </div>
+        <div class="col-md-3"></div>
     </div>
+     <br/>
 </div>
