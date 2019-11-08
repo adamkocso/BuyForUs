@@ -1,6 +1,11 @@
+
 .mypic {
     width: 200px;
     height: 100%;
+}
+
+.mybtn {
+    display: inline-block !important;
 }
 
 .card-deck {
@@ -66,4 +71,8 @@ nav.dropdown-item{
 #add-campaign{
     border: 2px solid;
     border-radius: 5px;
+}
+
+.my-pos{
+    display: inline;
 }

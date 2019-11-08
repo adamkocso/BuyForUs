@@ -211,17 +211,17 @@ namespace buyforus.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "77d9f3be-73f7-415d-84e6-c1c3f028c5c4", "d7f1b075-da1e-4f12-9d2c-7580f6752343", "Admin", "ADMIN" });
+                values: new object[] { "4c3f5873-fa6d-417c-b6e4-22c4fcff6b73", "7cfb4445-6cdf-4d3a-81cf-e983ca04df35", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "1bd943e6-b420-4107-affe-2807257ea5d9", "75a4f6c3-d95b-4b84-8e7f-0014d311b4a8", "Donator", "DONATOR" });
+                values: new object[] { "6dbe0abf-bf9a-45be-a9c8-e42abbb3a266", "1f5d4496-96ed-4d52-ae5d-fee18e120615", "Donator", "DONATOR" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "4ab497aa-89ad-435b-96a6-243d7e4b2692", "c49dd8ad-b267-4773-ae5f-b91ed5a1b56a", "Organization", "ORGANIZATION" });
+                values: new object[] { "f9643269-9018-4982-88c9-bc344e0bf918", "b504a5ce-b235-471c-a653-658d4f462a28", "Organization", "ORGANIZATION" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

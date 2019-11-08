@@ -35,14 +35,18 @@ namespace buyforus.Controllers
 
             return View(new UserViewModel{ User = currentDonater });
         }
-
         [HttpGet("/orgprofile")]
         public async Task<IActionResult> OrgProfile()
         {
             var currentOrg = await userManager.GetUserAsync(HttpContext.User);
-            var campaign = await campaignService.FindCampaignByUserId(currentOrg.Id);
+            return View(new UserViewModel{User = currentOrg, OwnerId = currentOrg.Id});
+        }
 
-            return View(new UserViewModel{User = currentOrg, Campaign = campaign });
+        [HttpGet("/vieworgprofile/{ownerId}")]
+        public async Task<IActionResult> ViewOrgProfile(string ownerId)
+        {
+            var currentOrg = await userManager.GetUserAsync(HttpContext.User);
+            return View("OrgProfile", new UserViewModel{User = currentOrg, OwnerId = ownerId});
         }
 
         [HttpGet("/editdonaterprofile")]
@@ -74,6 +78,7 @@ namespace buyforus.Controllers
                     await userService.SetIndexImageAsync(currentDonater, "donater");
                     await userService.EditDonaterProfile(editUserProfile, currentDonater.Id);
                 }
+                await userService.EditDonaterProfile(editUserProfile, currentDonater.Id);
                 return RedirectToAction(nameof(DonaterProfile));
             }
             
