@@ -4,59 +4,93 @@
 }
 
 <div class="container">
+    <br/>
     <div class="row">
-        <div class="col-md-3">
-            @if (Model.User.Uri == null)
-            {
-                <img src="images/org-default.png"/>
-            }
-            else
-            {
-                <img class="mypic" src="@Model.User.Uri"/>
-            }
-        </div>
-        <div class="col-md-9">
-            <h3>@Model.User.CompanyName</h3>
-            @*
-            Ide kell egy if függvény
-            *@
-            <a class="btn btn-sm btn-outline-info" role="button" asp-controller="Profile" asp-action="EditOrgProfile" asp-route-userId="@Model.User.Id">Edit</a>
-            <span>Private informations</span>
-            <ul>
-                <li>@Model.User.RepresentativeName</li>
-                <li>@Model.User.Headquarters</li>
-                <li>@Model.User.TaxNumber</li>
-            </ul>
-        </div>
-    </div>
-    <p>Public informations</p>
-    <div class="row">
-        <div class="col-md-6">
-            <h4>@Model.User.CharityType</h4>
-            <p>@Model.User.Description</p>
-        </div>
-        <div class="col-md-6">
-            <p>Contact informations</p>
-            <ul>
-                <li>@Model.User.Email</li>
-                <li>
-                    <a href="@Model.User.Website">@Model.User.CompanyName</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="row">
-        @if (@Model.Campaign != null)
-        {
-            <div class="col-md-6">
-                <a asp-controller="Campaign" asp-action="CampaignInfo" asp-route-campaignId="@Model.Campaign.CampaignId" class="btn btn-primary">My Campaign</a>
+        <div class="col-md-2"></div>
+        <div class="card col-md-8">
+            <br/>
+            <div class="row no-gutters">
+                <div class="col-md-6">
+                    @if (Model.User.Uri == null)
+                    {
+                        <img src="~/images/org-default.png"/>
+                    }
+                    else
+                    {
+                        <img class="mypic" src="@Model.User.Uri"/>
+                    }
+                </div>
+                <div class="col-md-6">
+                    <h3>@Model.User.CompanyName</h3>
+                    @if (@Model.User.Id.Equals(@Model.OwnerId))
+                    {
+                        <span>
+                            <i>Private informations</i>
+                        </span>
+                        <ul>
+                            <li>@Model.User.RepresentativeName</li>
+                            <li>@Model.User.Headquarters</li>
+                            <li>@Model.User.TaxNumber</li>
+                        </ul>
+                        <a class="btn btn-sm btn-outline-info" role="button" asp-controller="Profile" asp-action="EditOrgProfile" asp-route-userId="@Model.User.Id">Edit</a>
+                    }
+                </div>
             </div>
-        }
-        @if (@Model.Campaign == null)
-        {
-            <div class="col-md-6">
-                <a asp-controller="Campaign" asp-action="AddCampaign" class="btn btn-primary">Add Campaign</a>
-            </div>
-        }
+            <br/>
+        </div>
+        <div class="col-md-2"></div>
     </div>
+
+    <br/>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="card col-md-8">
+            <br/>
+            <div class="row no-gutters">
+                <div class="col-md-6">
+                    <span>
+                        <i>Public informations</i>
+                    </span>
+                    <h4>@Model.User.CharityType</h4>
+                    <p>@Model.User.Description</p>
+                </div>
+
+                <div class="col-md-6">
+                    <span>
+                        <i>Contact informations</i>
+                    </span>
+                    <ul>
+                        <li>@Model.User.Email</li>
+                        <li>
+                            <a href="@Model.User.Website">@Model.User.CompanyName</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <br/>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+    <br/>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            @if (@Model.Campaign != null)
+            {
+                <div class="text-center">
+                    <a asp-controller="Campaign" asp-action="CampaignInfo" asp-route-campaignId="@Model.Campaign.CampaignId" class="btn btn-primary">My Campaign</a>
+                </div>
+            }
+            @if (@Model.Campaign == null)
+            {
+                <div class="text-center">
+                    <a asp-controller="Campaign" asp-action="AddCampaign" class="btn btn-primary">Add Campaign</a>
+                </div>
+            }
+        </div>
+        <div class="col-md-2"></div>
+        <br/>
+    </div>
+    <br/>
 </div>

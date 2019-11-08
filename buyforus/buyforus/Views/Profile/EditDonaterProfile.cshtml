@@ -4,6 +4,7 @@
     ViewData["Title"] = "Edit Profile";
 }
 <div class="container">
+<<<<<<< HEAD
     <h1>Edit Profile</h1>
     <form asp-controller="Profile" asp-action="EditDonaterProfile" method="post" enctype="multipart/form-data">
         <div class="form-group">
@@ -31,4 +32,35 @@
         <button type="submit" class="btn btn-outline-info">Save</button>
     </form>
     <a class="btn btn-sm btn-outline-danger" role="button" asp-controller="Profile" asp-action="DonaterProfile">Cancel</a>
+=======
+    <br/>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="card col-md-6">
+            <br/>
+            <h3>Edit profile</h3>
+            <form asp-controller="Profile" asp-action="EditDonaterProfile" method="post">
+                <div class="md-form">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control"/>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="md-form">
+                    <label asp-for="Username"></label>
+                    <input asp-for="Username" class="form-control"/>
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-sm btn-outline-success">Save</button>
+                </div>
+            </form>
+            <div>
+                <a class="btn btn-sm btn-outline-danger" role="button" asp-controller="Profile" asp-action="DonaterProfile">Cancel</a>
+            </div>
+            <br/>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <br/>
+>>>>>>> 5c2b8823a7bdebb914ba84d1c67c95a6ce232390
 </div>
