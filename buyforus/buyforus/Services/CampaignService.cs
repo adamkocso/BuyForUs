@@ -40,7 +40,8 @@ namespace buyforus.Services
                 Description = addCampaignViewModel.Description,
                 Title = addCampaignViewModel.Title,
                 UserId = user.Id,
-                ExpiryDate = SetExpiryDate()
+                ExpiryDate = SetExpiryDate(),
+                Uri = user.Uri
             };
             var result = await applicationContext.Campaigns.AddAsync(campaign);
             await applicationContext.SaveChangesAsync();
@@ -51,6 +52,12 @@ namespace buyforus.Services
         {
             var expiryDate = DateTime.Today.AddDays(30);
             return expiryDate;
+        }
+
+        public Task<Campaign> FindCampaignByUserId(string id)
+        {
+            var campaign = applicationContext.Campaigns.SingleOrDefaultAsync(x => x.UserId == id);
+            return campaign;
         }
     }
 }

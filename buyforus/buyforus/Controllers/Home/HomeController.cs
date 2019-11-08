@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace buyforus.Controllers.Home
 {
-    [Authorize]
     public class HomeController : Controller
     {
         private readonly ICampaignService campaignService;

@@ -3,65 +3,37 @@
 @{
     ViewData["Title"] = "Index";
 }
-<div class="row">
-    <div class="col-md-2 topdonators">
-        <div>
-            <h3>Our latest donators</h3>
-            <h4>Kriszti</h4>
-            <h4>Ityu</h4>
-            <h4>Ádám</h4>
-        </div>
-    </div>
-    <div class="col-md-10">
-        <div class="card-deck">
-            @if (Model != null)
-            {
-                @foreach (var campaign in @Model)
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="card-deck">
+                @if (Model != null)
                 {
-                    <div class=" col-md-4 mb-4">
-                        <div class="card">
-                            <div class="view overlay">
-                                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
-                                <a href="#!">
-                                    <div class="mask rgba-white-slight"></div>
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <h4 class="card-title">@campaign.Title</h4>
-                                <p class="card-text">@campaign.Description</p>
-                                <form asp-controller="Campaign" asp-action="CampaignInfo" asp-route-campaignId="@campaign.CampaignId" method="get">
-                                    <button type="submit" class="btn btn-light-blue btn-md">Read more</button>
-                                </form>
+                    @foreach (var campaign in @Model)
+                    {
+                        <div class=" col-md-4 mb-4">
+                            <div class="card">
+                                <div class="view overlay">
+                                    @if (campaign.Uri != null)
+                                    {
+                                        <img class="card-img-top" src="@campaign.Uri">
+                                    }
+                                    else
+                                    {
+                                        <img class="card-img-top" src="images/org-default.png">
+                                    }
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title">@campaign.Title</h4>
+                                    <p class="card-text">@campaign.Description</p>
+                                    <form asp-controller="Campaign" asp-action="CampaignInfo" asp-route-campaignId="@campaign.CampaignId" method="get">
+                                        <button type="submit" class="btn btn-light-blue btn-md">Read more</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    }
                 }
-            }
+            </div>
         </div>
     </div>
-</div>
-
-<script>
-        @for (int i = 0; i < @Model.Count; i++)
-{
-     @:var countDownDate = new Date("@Model[i].ExpiryDate.ToString()").getTime();
-    }
-    var x = setInterval(function () {
-    var now = new Date().getTime();
-    var distance = countDownDate - now;
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    var array = document.getElementsByClassName("date");
-
-   for (i = 0; i < array.length; i++) {
-       array[i].innerHTML = days + "d " + hours + "h "
-           + minutes + "m " + seconds + "s ";}
-        if (distance < 0) {
-            clearInterval(x);
-           document.getElementsByClassName("date")[0].innerHTML = "EXPIRED";
-            y++;
-       }
-}, 1000);
-</script>

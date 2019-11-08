@@ -12,30 +12,37 @@ namespace buyforus.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
-
         private readonly IUserService userService;
         private readonly IMapper mapper;
         private readonly UserManager<User> userManager;
+        private readonly IImageService imageService;
+        private readonly ICampaignService campaignService;
 
-        public ProfileController(IUserService userService, IMapper mapper, UserManager<User> userManager)
+        public ProfileController(IUserService userService, IMapper mapper, UserManager<User> userManager,
+            IImageService imageService, ICampaignService campaignService)
         {
             this.userService = userService;
             this.mapper = mapper;
             this.userManager = userManager;
+            this.imageService = imageService;
+            this.campaignService = campaignService;
         }
 
         [HttpGet("/donaterprofile")]
         public async Task<IActionResult> DonaterProfile()
         {
             var currentDonater = await userManager.GetUserAsync(HttpContext.User);
-            return View(new UserViewModel{User = currentDonater});
+
+            return View(new UserViewModel{ User = currentDonater });
         }
 
         [HttpGet("/orgprofile")]
         public async Task<IActionResult> OrgProfile()
         {
             var currentOrg = await userManager.GetUserAsync(HttpContext.User);
-            return View(new UserViewModel{User = currentOrg});
+            var campaign = await campaignService.FindCampaignByUserId(currentOrg.Id);
+
+            return View(new UserViewModel{User = currentOrg, Campaign = campaign });
         }
 
         [HttpGet("/editdonaterprofile")]
@@ -56,7 +63,17 @@ namespace buyforus.Controllers
             ModelState.Remove("Password");
             if(ModelState.IsValid)
             {
-                await userService.EditDonaterProfile(editUserProfile, currentDonater.Id);
+                if (editUserProfile.File != null)
+                {
+                    var errors = imageService.Validate(editUserProfile.File, editUserProfile.ErrorMessages);
+                    if (errors.Count != 0)
+                    {
+                        return View(editUserProfile);
+                    }
+                    await imageService.UploadAsync(editUserProfile.File, currentDonater.Id, "donater");
+                    await userService.EditDonaterProfile(editUserProfile, currentDonater.Id);
+                    await userService.SetIndexImageAsync(currentDonater, "donater");
+                }
                 return RedirectToAction(nameof(DonaterProfile));
             }
             
@@ -78,7 +95,17 @@ namespace buyforus.Controllers
             ModelState.Remove("Password");
             if (ModelState.IsValid)
             {
-                await userService.EditOrgProfile(editOrgProfile, currentOrg.Id);
+                if (editOrgProfile.File != null)
+                {
+                    var errors = imageService.Validate(editOrgProfile.File, editOrgProfile.ErrorMessages);
+                    if (errors.Count != 0)
+                    {
+                        return View(editOrgProfile);
+                    }
+                    await imageService.UploadAsync(editOrgProfile.File, currentOrg.Id, "organization");
+                    await userService.EditOrgProfile(editOrgProfile, currentOrg.Id);
+                    await userService.SetIndexImageAsync(currentOrg, "organization");
+                }
                 return RedirectToAction(nameof(OrgProfile));
             }
 

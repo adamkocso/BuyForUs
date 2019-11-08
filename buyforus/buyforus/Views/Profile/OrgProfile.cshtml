@@ -3,7 +3,7 @@
     ViewData["Title"] = "OrgProfile";
 }
 
-<div>
+<div class="container">
     <div class="row">
         <div class="col-md-3">
             @if (Model.User.Uri == null)
@@ -12,7 +12,7 @@
             }
             else
             {
-                <img src="@Model.User.Uri"/>
+                <img class="mypic" src="@Model.User.Uri"/>
             }
         </div>
         <div class="col-md-9">
@@ -44,12 +44,17 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
-            <a href="#">My Campaign</a>
-        </div>
-        <div class="col-md-6">
-            <h1>+</h1>
-            <a href="#">Add Campaign</a>
-        </div>
+        @if (@Model.Campaign != null)
+        {
+            <div class="col-md-6">
+                <a asp-controller="Campaign" asp-action="CampaignInfo" asp-route-campaignId="@Model.Campaign.CampaignId" class="btn btn-primary">My Campaign</a>
+            </div>
+        }
+        @if (@Model.Campaign == null)
+        {
+            <div class="col-md-6">
+                <a asp-controller="Campaign" asp-action="AddCampaign" class="btn btn-primary">Add Campaign</a>
+            </div>
+        }
     </div>
 </div>

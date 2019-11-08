@@ -6,6 +6,6 @@ namespace buyforus.Services
 {
     public interface IBlobService
     {
-        Task<CloudBlobContainer> GetBlobContainer();
+        Task<CloudBlobContainer> GetBlobContainer(string blobContainerName);
     }
 }

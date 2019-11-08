@@ -13,5 +13,6 @@ namespace buyforus.Services
         Task<long> AddCampaignAsync(AddCampaignViewModel addCampaignViewModel, User user);
         DateTime SetExpiryDate();
         Task<Campaign> FindCampaignByIdAsync(long campaignId);
+        Task<Campaign> FindCampaignByUserId(string id);
     }
 }
