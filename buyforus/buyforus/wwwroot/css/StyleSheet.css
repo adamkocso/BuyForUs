@@ -1,7 +1,14 @@
+body {
+    min-height: 100%;
+}
 
 .mypic {
     width: 200px;
     height: 100%;
+}
+
+.mybtn {
+    display: inline-block !important;
 }
 
 .card-deck {

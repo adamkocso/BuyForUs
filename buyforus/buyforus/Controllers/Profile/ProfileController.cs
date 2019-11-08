@@ -75,6 +75,7 @@ namespace buyforus.Controllers
                     }
                     await imageService.UploadAsync(editUserProfile.File, currentDonater.Id, "donater");
                     await userService.SetIndexImageAsync(currentDonater, "donater");
+                    await userService.EditDonaterProfile(editUserProfile, currentDonater.Id);
                 }
                 await userService.EditDonaterProfile(editUserProfile, currentDonater.Id);
                 return RedirectToAction(nameof(DonaterProfile));

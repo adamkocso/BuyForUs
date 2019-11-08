@@ -63,10 +63,13 @@ namespace buyforus.Services
         {
             var user = await applicationContext.Users.FirstOrDefaultAsync(x => x.Id == userId);
             var campaign = await applicationContext.Campaigns.FirstOrDefaultAsync(y => y.UserId == userId);
-            campaign.Uri = user.Uri;
             mapper.Map(model, user);
+            if (campaign != null)
+            {
+                campaign.Uri = user.Uri;
+                applicationContext.Campaigns.Update(campaign);
+            }
             applicationContext.Users.Update(user);
-            applicationContext.Campaigns.Update(campaign);
             await applicationContext.SaveChangesAsync();
         }
 
