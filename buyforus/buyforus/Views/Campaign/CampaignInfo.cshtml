@@ -1,16 +1,43 @@
-﻿@model  CampaignViewModel
+﻿@model CampaignViewModel
 
 <div class="container">
-    @if (@Model.User.Uri == null)
+    <br />
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="card col-md-8">
+            <div class="row no-gutters">
+                <br />
+                <div class="col-md-6">
+                    @if (@Model.User.Uri == null)
+                    {
+                        <img src="~/images/org-default.png" />
+                    }
+                    else
+                    {
+                        <img src="@Model.User.Uri" />
+                    }
+                </div>
+                <br />
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h5 class="card-title"> @Model.Campaign.Title</h5>
+                        <a asp-controller="Profile" asp-action="ViewOrgProfile" asp-route-ownerId="@Model.Campaign.UserId">More info</a>
+                        <p class="card-text">@Model.Campaign.Description.</p>
+                        <p class="card-text" id="date"><small class="text-muted"></small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+        <br />
+    </div>
+    <br />
+    @if (User.IsInRole("Organization"))
     {
-        <img src="~/images/org-default.png" />
-    }
-    else
-    {
-        <img src="@Model.User.Uri" />
-    }
+<div class="card">
+    <br />
     <form asp-action="AddProduct" asp-controller="Product" asp-route-campaignId="@Model.Campaign.CampaignId" method="post">
-        <div class="form-header bg-light">
+        <div class="form-header bg-white" id="addproduct">
             <h3> Add new product:</h3>
         </div>
         <div class="md-form">
@@ -35,26 +62,9 @@
             <button class="btn btn-primary">Add product</button>
         </div>
     </form>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-6">
-                <div>
-                    <h4 class="card-title">Title</h4>
-                    <h3 class="card-text">@Model.Campaign.Title</h3>
-                </div>
-                <div>
-                    <h4 class="card-title">Expiry Date</h4>
-                    <h3 color="red" class="card-text" id="date"></h3>
-                </div>
-                <div>
-                    <h4 class="card-title">Description</h4>
-                    <h4 class="card-text">@Model.Campaign.Description</h4>
-                </div>
-                    <a asp-controller="Profile" asp-action="ViewOrgProfile" asp-route-ownerId="@Model.Campaign.UserId">More info</a>
-            </div>
-        </div>
-    </div>
-    @if (Model.Products != null)
+</div>
+    }
+    @if (Model.Products.Count != 0)
     {
         <table class="table">
             <thead class="thead-dark">
@@ -88,7 +98,7 @@
     }
     else
     {
-        <h1>No products</h1>
+        <div class="alert alert-danger" role="alert">No products yet!</div>
     }
 </div>
 
