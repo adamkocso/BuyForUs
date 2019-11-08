@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace buyforus.ViewModels
 {
@@ -32,8 +34,11 @@ namespace buyforus.ViewModels
         public string Headquarters { get; set; }
         public string Description { get; set; }
         public string RepresentativeName { get; set; }
+        public string Website { get; set; }
 
         [Required(ErrorMessage = "The Charity Type field is required.")]
         public string CharityType { get; set; }
+        public IFormFile File { get; set; }
+        public List<string> ErrorMessages { get; set; } = new List<string>();
     }
 }

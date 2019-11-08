@@ -42,6 +42,11 @@
                 <span asp-validation-for="Headquarters" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Website">Website</label>
+                <input asp-for="Website" class="form-control"/>
+                <span asp-validation-for="Website" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Description">Description about your Co.</label>
                 <textarea asp-for="Description" rows="5" id="comment"></textarea>
                 <input asp-for="Description" class="form-control"/>

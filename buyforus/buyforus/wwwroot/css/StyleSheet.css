@@ -1,3 +1,8 @@
+.mypic {
+    width: 200px;
+    height: 100%;
+}
+
 nav{
     border-bottom: 2px solid red;
     border-radius: 5px;
