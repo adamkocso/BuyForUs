@@ -6,26 +6,31 @@
     ViewData["Title"] = "Log in";
 }
 <div class="container">
-    <h2>@ViewData["Title"]</h2>
-    <div class="row">
-        <div class="col-md-12">
-            <section>
+    <div class="container">
+        <br/>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="card col-md-6">
+                <br/>
+                <h2>@ViewData["Title"]</h2>
                 <form asp-controller="User" asp-action="Login" method="post">
-                    <h4>Use a local account to log in.</h4>
                     @if (Model.ErrorMessages != null)
                     {
                         @foreach (var error in Model.ErrorMessages)
                         {
-                            <span class="text-danger">error</span>
+                            <span class="text-danger">Invalid login attempt</span>
                         }
+                        
                     }
                     <hr/>
-                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <span asp-validation-summary="All" class="text-danger"></span>
+                        
                     <div class="form-group">
                         <label asp-for="Email"></label>
                         <input asp-for="Email" class="form-control"/>
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
+                        
                     <div class="form-group">
                         <label asp-for="Password"></label>
                         <input asp-for="Password" class="form-control"/>
@@ -34,8 +39,11 @@
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Log in</button>
                     </div>
+                       
                 </form>
-            </section>
+                <br/>
+            </div>
         </div>
+        <br/>
     </div>
-</div>
+    </div>

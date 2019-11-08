@@ -27,12 +27,11 @@ nav.dropdown-item{
     opacity: 0.3%;
 }
 
-<<<<<<< HEAD
 #add-campaign{
     border: 2px solid;
     border-radius: 5px;
 }
-=======
+
 .input-group-addon {
     background-color: transparent;
     border-left: 0;
@@ -81,5 +80,3 @@ nav.dropdown-item{
 .my-pos{
     display: inline;
 }
-
->>>>>>> 5c2b8823a7bdebb914ba84d1c67c95a6ce232390
