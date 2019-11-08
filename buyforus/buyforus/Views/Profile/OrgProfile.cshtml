@@ -8,7 +8,7 @@
         <div class="col-md-3">
             @if (Model.User.Uri == null)
             {
-                <img src="images/org-default.png" />
+                <img src="images/org-default.png"/>
             }
             else
             {
@@ -39,7 +39,9 @@
             <p>Contact informations</p>
             <ul>
                 <li>@Model.User.Email</li>
-                <li><a href="@Model.User.Website">@Model.User.CompanyName</a></li>
+                <li>
+                    <a href="@Model.User.Website">@Model.User.CompanyName</a>
+                </li>
             </ul>
         </div>
     </div>

@@ -12,7 +12,6 @@ namespace buyforus.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
-
         private readonly IUserService userService;
         private readonly IMapper mapper;
         private readonly UserManager<User> userManager;
@@ -28,14 +27,14 @@ namespace buyforus.Controllers
         public async Task<IActionResult> DonaterProfile()
         {
             var currentDonater = await userManager.GetUserAsync(HttpContext.User);
-            return View(new UserViewModel{User = currentDonater});
+            return View(new UserViewModel {User = currentDonater});
         }
 
         [HttpGet("/orgprofile")]
         public async Task<IActionResult> OrgProfile()
         {
             var currentOrg = await userManager.GetUserAsync(HttpContext.User);
-            return View(new UserViewModel{User = currentOrg});
+            return View(new UserViewModel {User = currentOrg});
         }
 
         [HttpGet("/editdonaterprofile")]
@@ -54,15 +53,15 @@ namespace buyforus.Controllers
         {
             var currentDonater = await userManager.GetUserAsync(HttpContext.User);
             ModelState.Remove("Password");
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 await userService.EditDonaterProfile(editUserProfile, currentDonater.Id);
                 return RedirectToAction(nameof(DonaterProfile));
             }
-            
+
             return View(editUserProfile);
         }
-        
+
         [HttpGet("/editorgprofile")]
         public async Task<IActionResult> EditOrgProfile()
         {

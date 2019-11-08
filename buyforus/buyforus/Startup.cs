@@ -23,6 +23,7 @@ namespace buyforus
         {
             Configuration = configuration;
         }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -47,7 +48,7 @@ namespace buyforus
             }
 
             services.AddTransient<IUserService, UserService>();
-            
+
             services.BuildServiceProvider().GetService<ApplicationContext>().Database.Migrate();
             services.AddTransient<ICampaignService, CampaignService>();
             services.SetUpAutoMapper();
@@ -57,7 +58,7 @@ namespace buyforus
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, 
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
             UserManager<User> userManager)
         {
             SetupRoles.CreateUsersWithRoles(userManager);
@@ -66,6 +67,7 @@ namespace buyforus
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseStaticFiles();

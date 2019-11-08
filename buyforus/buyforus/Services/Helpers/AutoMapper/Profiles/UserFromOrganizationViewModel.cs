@@ -8,7 +8,10 @@ namespace buyforus.Services.Helpers.AutoMapper.Profiles
     {
         public UserFromOrganizationViewModel()
         {
-            CreateMap<OrganizationViewModel, User>();
+            CreateMap<OrganizationViewModel, User>()
+                .ForMember(
+                    dest => dest.UserName,
+                    opt => opt.MapFrom(src => src.CompanyName));
         }
     }
 }

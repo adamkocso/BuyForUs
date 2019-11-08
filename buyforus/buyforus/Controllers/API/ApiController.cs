@@ -16,13 +16,13 @@ namespace buyforus.Controllers.API
             this.campaignService = campaignService;
             this.userService = userService;
         }
-        
+
         [HttpPut("api/donation")]
         public ActionResult Donation([FromBody] ApiViewModel model)
         {
             campaignService.DecrementProductAmount(model);
 //            userService.WithdrawMoney(model);
-            
+
             return new OkObjectResult($"Your donation has been placed! Thank you!");
         }
     }

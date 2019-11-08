@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using buyforus.Models;
 using buyforus.ViewModels;
 using Microsoft.EntityFrameworkCore;
@@ -11,11 +12,13 @@ namespace buyforus.Services
     public class CampaignService : ICampaignService
     {
         private readonly ApplicationContext applicationContext;
-        
+        private readonly IMapper mapper;
 
-        public CampaignService(ApplicationContext applicationContext)
+
+        public CampaignService(ApplicationContext applicationContext, IMapper mapper)
         {
             this.applicationContext = applicationContext;
+            this.mapper = mapper;
         }
 
         public async Task<Campaign> FindCampaignByIdAsync(long campaignId)
@@ -36,10 +39,31 @@ namespace buyforus.Services
             // elő kellene szerezni az adott productot a neve alapján model.ProductName
             // a product amountból kivonni a model.Amount
         }
+
         public async Task<Campaign> FindCampaignById(long campaignId)
         {
             var campaign = await applicationContext.Campaigns.FirstOrDefaultAsync(a => a.CampaignId == campaignId);
             return campaign;
+        }
+
+        public async Task<long> AddCampaignAsync(AddCampaignViewModel addCampaignViewModel, User user)
+        {
+            var campaign = new Campaign
+            {
+                Description = addCampaignViewModel.Description,
+                Title = addCampaignViewModel.Title,
+                UserId = user.Id,
+                ExpiryDate = SetExpiryDate()
+            };
+            var result = await applicationContext.Campaigns.AddAsync(campaign);
+            await applicationContext.SaveChangesAsync();
+            return campaign.CampaignId;
+        }
+
+        public DateTime SetExpiryDate()
+        {
+            var expiryDate = DateTime.Today.AddDays(30);
+            return expiryDate;
         }
     }
 }

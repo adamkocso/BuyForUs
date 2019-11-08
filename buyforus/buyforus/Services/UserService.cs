@@ -15,7 +15,8 @@ namespace buyforus.Services
         private readonly UserManager<User> userManager;
         private readonly IMapper mapper;
 
-        public UserService(ApplicationContext applicationContext, SignInManager<User> signInManager, UserManager<User> userManager, IMapper mapper)
+        public UserService(ApplicationContext applicationContext, SignInManager<User> signInManager,
+            UserManager<User> userManager, IMapper mapper)
         {
             this.applicationContext = applicationContext;
             this.signInManager = signInManager;

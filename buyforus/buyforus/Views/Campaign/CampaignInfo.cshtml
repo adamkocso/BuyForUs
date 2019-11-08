@@ -2,17 +2,18 @@
 
 <div>
     @if (@Model.User.Uri == null)
-    {       
-        <img src="~/images/org-default.png" />
+    {
+        <img src="~/images/org-default.png"/>
     }
     else
     {
-        <img src="@Model.User.Uri" />
+        <img src="@Model.User.Uri"/>
     }
     <h1>@Model.Campaign.Title</h1>
-    <h2>@Model.Campaign.ExpiryTime</h2>
+    <h2>@Model.Campaign.ExpiryDate</h2>
     <h2>@Model.Campaign.TotalPrice</h2>
-    @if (Model.Campaign.Products != null) {
+    @if (Model.Campaign.Products != null)
+    {
         <table>
             <tr>
                 @foreach (var product in Model.Campaign.Products)

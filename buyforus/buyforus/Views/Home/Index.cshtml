@@ -40,3 +40,28 @@
         </div>
     </div>
 </div>
+
+<script>
+        @for (int i = 0; i < @Model.Count; i++)
+        {
+            @:var countDownDate = new Date("@Model[i].ExpiryDate.ToString()").getTime();
+        }
+    var x = setInterval(function () {
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    var array = document.getElementsByClassName("date");
+
+   for (i = 0; i < array.length; i++) {
+       array[i].innerHTML = days + "d " + hours + "h "
+           + minutes + "m " + seconds + "s ";}
+        if (distance < 0) {
+            clearInterval(x);
+           document.getElementsByClassName("date")[0].innerHTML = "EXPIRED";
+            y++;
+       }
+}, 1000);
+</script>

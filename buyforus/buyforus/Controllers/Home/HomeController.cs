@@ -12,6 +12,7 @@ namespace buyforus.Controllers.Home
     public class HomeController : Controller
     {
         private readonly ICampaignService campaignService;
+
         public HomeController(ICampaignService campaignService)
         {
             this.campaignService = campaignService;
@@ -20,7 +21,7 @@ namespace buyforus.Controllers.Home
         [HttpGet("/home")]
         public async Task<IActionResult> Index()
         {
-           var campaigns = await campaignService.ListAllCampaignAsync();
+            var campaigns = await campaignService.ListAllCampaignAsync();
             return View(campaigns);
         }
     }
