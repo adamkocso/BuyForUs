@@ -42,22 +42,22 @@ namespace buyforus.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b6c93199-5370-4542-97d1-6cd97f67ea81",
-                            ConcurrencyStamp = "53fc607f-95e7-49a2-a3ac-640850e765d0",
+                            Id = "5b585415-59c6-41c0-917e-6ea422f2b7cd",
+                            ConcurrencyStamp = "8965d4c1-95ad-41bb-a0e9-d603900d9e3b",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "415f239a-fae0-4952-b24f-9d77cb2309ca",
-                            ConcurrencyStamp = "0a4d2cf5-7813-420a-bc7e-4813803dd71c",
+                            Id = "15b7a087-a108-4c70-8615-a714dd94b018",
+                            ConcurrencyStamp = "fe5bf5a3-c8db-4237-a6eb-9cb2b0025b2a",
                             Name = "Donator",
                             NormalizedName = "DONATOR"
                         },
                         new
                         {
-                            Id = "762b8a4f-9932-4ba4-aa72-76f41d951700",
-                            ConcurrencyStamp = "e2a546c1-b13e-46f2-bb2f-9f7e9a21fdd4",
+                            Id = "84543b5f-5a7a-4df5-b34d-aaa7ae083343",
+                            ConcurrencyStamp = "7a8c50e2-4c85-40e1-9ce3-52b7e833a759",
                             Name = "Organization",
                             NormalizedName = "ORGANIZATION"
                         });
@@ -154,7 +154,7 @@ namespace buyforus.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<DateTime>("ExpiryTime");
+                    b.Property<DateTime>("ExpiryDate");
 
                     b.Property<string>("Title");
 

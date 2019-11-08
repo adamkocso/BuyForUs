@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace buyforus.Migrations
 {
-    public partial class CreateInitial : Migration
+    public partial class Buyforusdb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -169,7 +169,7 @@ namespace buyforus.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    ExpiryTime = table.Column<DateTime>(nullable: false),
+                    ExpiryDate = table.Column<DateTime>(nullable: false),
                     TotalPrice = table.Column<int>(nullable: false),
                     UserId = table.Column<string>(nullable: true)
                 },
@@ -209,17 +209,17 @@ namespace buyforus.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "b6c93199-5370-4542-97d1-6cd97f67ea81", "53fc607f-95e7-49a2-a3ac-640850e765d0", "Admin", "ADMIN" });
+                values: new object[] { "5b585415-59c6-41c0-917e-6ea422f2b7cd", "8965d4c1-95ad-41bb-a0e9-d603900d9e3b", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "415f239a-fae0-4952-b24f-9d77cb2309ca", "0a4d2cf5-7813-420a-bc7e-4813803dd71c", "Donator", "DONATOR" });
+                values: new object[] { "15b7a087-a108-4c70-8615-a714dd94b018", "fe5bf5a3-c8db-4237-a6eb-9cb2b0025b2a", "Donator", "DONATOR" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "762b8a4f-9932-4ba4-aa72-76f41d951700", "e2a546c1-b13e-46f2-bb2f-9f7e9a21fdd4", "Organization", "ORGANIZATION" });
+                values: new object[] { "84543b5f-5a7a-4df5-b34d-aaa7ae083343", "7a8c50e2-4c85-40e1-9ce3-52b7e833a759", "Organization", "ORGANIZATION" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

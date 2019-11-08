@@ -1,5 +1,10 @@
+<<<<<<< HEAD
+body {
+    height: 100%;
+=======
 body{
 /*    height: 100%;*/
+>>>>>>> 60f17d88e6c183d607f9154ed03b3a160a4e40c9
     background-color: rgb(255, 242, 237);
     background-blend-mode: overlay;
 }
@@ -11,4 +16,8 @@ nav{
 
 nav.dropdown-item{
     opacity: 0.3%;
+}
+#add-campaign{
+    border: 2px solid;
+    border-radius: 5px;
 }
