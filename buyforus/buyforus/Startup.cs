@@ -53,6 +53,7 @@ namespace buyforus
             services.SetUpAutoMapper();
             services.AddTransient<IImageService, ImageService>();
             services.AddTransient<IBlobService, BlobService>();
+            services.AddTransient<IProductService, ProductService>();
             services.AddMvc();
         }
 

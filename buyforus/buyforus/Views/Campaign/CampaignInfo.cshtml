@@ -1,13 +1,13 @@
 ﻿@model  CampaignViewModel
 
-<div class="container"
-    @if (@Model.Campaign.Uri != null)
+<div class="container">
+    @if (@Model.Campaign.Uri == null)
     {       
-        <img src="@Model.Campaign.Uri">
+        <img src="~/images/org-default.png" />
     }
     else
     {
-        <img src="~/images/org-default.png">
+        <img class="mypic" src="@Model.Campaign.Uri" />
     }
     <h1>@Model.Campaign.Title</h1>
     <h2>@Model.Campaign.ExpiryDate</h2>
