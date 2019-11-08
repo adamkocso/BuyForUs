@@ -1,3 +1,6 @@
+body {
+    min-height: 100%;
+}
 
 .mypic {
     width: 200px;
