@@ -75,7 +75,11 @@ nav.dropdown-item{
     border: 2px solid;
     border-radius: 5px;
 }
+#addproduct{
+    padding-left:30px;
+}
 
 .my-pos{
     display: inline;
 }
+
