@@ -9,8 +9,8 @@ using buyforus;
 namespace buyforus.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20191108020837_Buyforusdb")]
-    partial class Buyforusdb
+    [Migration("20191108023650_products")]
+    partial class products
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -44,22 +44,22 @@ namespace buyforus.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "68464eae-3009-4df2-aca9-8299103f7c28",
-                            ConcurrencyStamp = "fab04706-a76f-42aa-8469-00d26e556234",
+                            Id = "2e2eabb8-3dd8-47ce-99e5-1283f636c1b6",
+                            ConcurrencyStamp = "e1164970-3e1b-4e80-a1fc-0ae7e522a492",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "3c09474b-719f-4b23-90ff-19852c43416c",
-                            ConcurrencyStamp = "39267b68-9372-4d1b-b702-43fc0c700648",
+                            Id = "b9161770-79cc-4e65-8741-bbf0dca931be",
+                            ConcurrencyStamp = "4f33f543-1566-4049-8cef-8c703968f47e",
                             Name = "Donator",
                             NormalizedName = "DONATOR"
                         },
                         new
                         {
-                            Id = "1c5645a8-0e16-43e9-9578-ceff2390a832",
-                            ConcurrencyStamp = "61a0f17a-b717-4a06-8a1f-36853e8dc00e",
+                            Id = "aba4d94b-88fb-4c34-a610-e82e202ff2d1",
+                            ConcurrencyStamp = "859a2f5c-3e77-4005-a337-0b0220d7a7a5",
                             Name = "Organization",
                             NormalizedName = "ORGANIZATION"
                         });
@@ -206,6 +206,8 @@ namespace buyforus.Migrations
                         .IsConcurrencyToken();
 
                     b.Property<string>("Description");
+
+                    b.Property<int>("DonationAmount");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);
