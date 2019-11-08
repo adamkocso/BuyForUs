@@ -21,6 +21,7 @@
                 <div class="col-md-6">
                     <div class="card-body">
                         <h5 class="card-title"> @Model.Campaign.Title</h5>
+                        <a asp-controller="Profile" asp-action="ViewOrgProfile" asp-route-ownerId="@Model.Campaign.UserId">More info</a>
                         <p class="card-text">@Model.Campaign.Description.</p>
                         <p class="card-text" id="date"><small class="text-muted"></small></p>
                     </div>
@@ -30,30 +31,6 @@
         <div class="col-md-2"></div>
         <br />
     </div>
-
-    @*<div class="card">
-            <div class="card-header">
-                @if (@Model.User.Uri == null)
-                {
-                    <img src="~/images/org-default.png" />
-                }
-                else
-                {
-                    <img src="@Model.User.Uri" />
-                }
-            </div>
-            <div class="card-header">
-
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Expiry Date</h5>
-                <p color="red" class="card-text" id="date"></p>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Description</h5>
-                <p class="card-text">@Model.Campaign.Description</p>
-            </div>
-        </div>*@
     <br />
     @if (User.IsInRole("Organization"))
     {
