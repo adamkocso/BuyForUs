@@ -32,6 +32,7 @@ namespace buyforus.ViewModels
         public string Headquarters { get; set; }
         public string Description { get; set; }
         public string RepresentativeName { get; set; }
+        public string Website { get; set; }
 
         [Required(ErrorMessage = "The Charity Type field is required.")]
         public string CharityType { get; set; }

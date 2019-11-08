@@ -1,4 +1,6 @@
 ﻿using System.Threading.Tasks;
+using AutoMapper;
+using buyforus.Services;
 using buyforus.Models;
 using buyforus.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -10,10 +12,15 @@ namespace buyforus.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
+
+        private readonly IUserService userService;
+        private readonly IMapper mapper;
         private readonly UserManager<User> userManager;
 
-        public ProfileController(UserManager<Models.User> userManager)
+        public ProfileController(IUserService userService, IMapper mapper, UserManager<User> userManager)
         {
+            this.userService = userService;
+            this.mapper = mapper;
             this.userManager = userManager;
         }
 
@@ -32,27 +39,50 @@ namespace buyforus.Controllers
         }
 
         [HttpGet("/editdonaterprofile")]
-        public IActionResult EditDonaterProfile()
+        public async Task<IActionResult> EditDonaterProfile()
         {
-            return null;
+            var currentDonater = await userManager.GetUserAsync(HttpContext.User);
+            return View(new DonaterViewModel()
+            {
+                Username = currentDonater.UserName,
+                Email = currentDonater.Email
+            });
         }
 
         [HttpPost("/editdonaterprofile")]
-        public IActionResult EditDonaterProfile(UserViewModel editUserProfile)
+        public async Task<IActionResult> EditDonaterProfile(DonaterViewModel editUserProfile)
         {
-            return null;
+            var currentDonater = await userManager.GetUserAsync(HttpContext.User);
+            ModelState.Remove("Password");
+            if(ModelState.IsValid)
+            {
+                await userService.EditDonaterProfile(editUserProfile, currentDonater.Id);
+                return RedirectToAction(nameof(DonaterProfile));
+            }
+            
+            return View(editUserProfile);
         }
         
         [HttpGet("/editorgprofile")]
-        public IActionResult EditOrgProfile()
+        public async Task<IActionResult> EditOrgProfile()
         {
-            return null;
+            var currentOrg = await userManager.GetUserAsync(HttpContext.User);
+            var organizationViewModel = mapper.Map<User, OrganizationViewModel>(currentOrg);
+            return View(organizationViewModel);
         }
 
         [HttpPost("/editorgprofile")]
-        public IActionResult EditOrgProfile(UserViewModel editOrgProfile)
+        public async Task<IActionResult> EditOrgProfile(OrganizationViewModel editOrgProfile)
         {
-            return null;
+            var currentOrg = await userManager.GetUserAsync(HttpContext.User);
+            ModelState.Remove("Password");
+            if (ModelState.IsValid)
+            {
+                await userService.EditOrgProfile(editOrgProfile, currentOrg.Id);
+                return RedirectToAction(nameof(OrgProfile));
+            }
+
+            return View(editOrgProfile);
         }
     }
 }

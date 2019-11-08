@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <nav class="navbar sticky-top navbar-light bg-light">
+<nav class="navbar sticky-top navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" asp-action="Index" asp-controller="Home">
                 <img src="~/images/buyforus.png" height="40" width="120">
@@ -36,14 +36,11 @@
                         @if (User.IsInRole("Donator"))
                         {
                             <a class="dropdown-item" asp-controller="Profile" asp-action="DonaterProfile">My profile</a>
-
                         }
-
                         @if (User.IsInRole("Organization"))
                         {
                             <a class="dropdown-item" asp-controller="Profile" asp-action="OrgProfile">My profile</a>
                             <a class="dropdown-item" asp-controller="Campaign" asp-action="CampaignInfo">Manage campaigns</a>
-
                         }
                         <a class="dropdown-item" asp-controller="User" asp-action="Logout">Logout</a>
                     </div>
@@ -58,13 +55,13 @@
     <div>
         @RenderBody()
     </div>
-
-    <footer class="page-footer font-small light">
+<footer class="page-footer font-small light">
         <div class="footer-copyright text-center py-3">
             © @DateTime.Now.Year Copyright:
             <a href="#"> SeaShark Crew From Tetris</a>
         </div>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
