@@ -108,5 +108,13 @@ namespace buyforus.Services
             applicationContext.Users.Update(user);
             await applicationContext.SaveChangesAsync();
         }
+
+        public async Task AddToDonationAmountAsync(int price, string userId)
+        {
+            var user = await applicationContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            user.DonationAmount += price;
+            applicationContext.Users.Update(user);
+           await applicationContext.SaveChangesAsync();
+        }
     }
 }

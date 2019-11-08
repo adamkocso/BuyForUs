@@ -112,6 +112,15 @@ namespace buyforus.Controllers
             await userService.LogoutAsync();
             return RedirectToAction(nameof(Landing.LandingController.LandingPage),"Landing");
         }
+        [HttpPost("/addAmountToDonationAmount")]
+        public async Task<IActionResult> AddToDonationAmount(int price, long campaignId)
+        {
+            var currentUser = await userManager.GetUserAsync(HttpContext.User);
+           await userService.AddToDonationAmountAsync(price, currentUser.Id);
+
+           return RedirectToAction(nameof(CampaignController.CampaignInfo), "Campaign", new {campaignId });
+
+        }
 
 
         //        [HttpGet("/Google-login")]
