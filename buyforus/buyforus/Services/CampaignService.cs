@@ -14,6 +14,7 @@ namespace buyforus.Services
         private readonly ApplicationContext applicationContext;
         private readonly IMapper mapper;
 
+
         public CampaignService(ApplicationContext applicationContext, IMapper mapper)
         {
             this.applicationContext = applicationContext;
@@ -31,6 +32,19 @@ namespace buyforus.Services
         {
             var campaigns = await applicationContext.Campaigns.ToListAsync();
             return campaigns;
+        }
+
+        public async Task DecrementProductAmount(ApiViewModel model)
+        {
+            var campaign = await FindCampaignById(model.CampaignId);
+            // elő kellene szerezni az adott productot a neve alapján model.ProductName
+            // a product amountból kivonni a model.Amount
+        }
+
+        public async Task<Campaign> FindCampaignById(long campaignId)
+        {
+            var campaign = await applicationContext.Campaigns.FirstOrDefaultAsync(a => a.CampaignId == campaignId);
+            return campaign;
         }
 
         public async Task<long> AddCampaignAsync(AddCampaignViewModel addCampaignViewModel, User user)

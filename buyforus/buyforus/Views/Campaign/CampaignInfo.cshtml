@@ -68,27 +68,27 @@
     {
         <table class="table">
             <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Product Name</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Donate</th>
-                </tr>
+            <tr>
+                <th scope="col">Product Name</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Price</th>
+                <th scope="col">Donate</th>
+            </tr>
             </thead>
             <tbody>
-                @foreach (var product in Model.Products)
-                {
-                    <tr>
-                        <td>@product.ProductName</td>
-                        <td>@product.Amount</td>
-                        <td>@product.Price</td>
-                        <td>
-                            <form method="post" asp-controller="User" asp-action="AddToDonationAmount" asp-route-price="@product.Price" asp-route-campaignId="@product.CampaignId">
-                                <button type="submit" class="btn btn-sm btn-primary">Donate</button>
-                            </form>
-                        </td>
-                    </tr>
-                }
+            @foreach (var product in Model.Products)
+            {
+                <tr>
+                    <td>@product.ProductName</td>
+                    <td>@product.Amount</td>
+                    <td>@product.Price</td>
+                    <td>
+                        <form method="post" asp-controller="User" asp-action="AddToDonationAmount" asp-route-price="@product.Price" asp-route-campaignId="@product.CampaignId">
+                            <button type="submit" class="btn btn-sm btn-primary">Donate</button>
+                        </form>
+                    </td>
+                </tr>
+            }
 
             </tbody>
         </table>

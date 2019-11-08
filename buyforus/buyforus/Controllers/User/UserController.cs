@@ -14,22 +14,23 @@ namespace buyforus.Controllers
         private readonly IUserService userService;
         private readonly UserManager<User> userManager;
 
-        public UserController(IUserService userService, UserManager<Models.User> userManager)
+        public UserController(IUserService userService, UserManager<User> userManager)
         {
             this.userService = userService;
             this.userManager = userManager;
         }
-        
+
         [HttpGet("/OrganizationReg")]
         public IActionResult OrganizationRegistration()
         {
             return View();
         }
-        
+
         [HttpPost("/OrganizationReg")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> OrganizationRegistration(OrganizationViewModel model)
         {
+            ModelState.Remove("UserName");
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -49,13 +50,13 @@ namespace buyforus.Controllers
 
             return View(model);
         }
-        
+
         [HttpGet("/DonaterReg")]
         public IActionResult DonaterRegistration()
         {
             return View();
         }
-        
+
         [HttpPost("/DonaterReg")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DonaterRegistration(DonaterViewModel model)
@@ -106,12 +107,14 @@ namespace buyforus.Controllers
 
             return View(model);
         }
+
         [HttpGet("/logout")]
         public async Task<IActionResult> Logout()
         {
             await userService.LogoutAsync();
-            return RedirectToAction(nameof(Landing.LandingController.LandingPage),"Landing");
+            return RedirectToAction(nameof(Landing.LandingController.LandingPage), "Landing");
         }
+
         [HttpPost("/addAmountToDonationAmount")]
         public async Task<IActionResult> AddToDonationAmount(int price, long campaignId)
         {
@@ -119,44 +122,6 @@ namespace buyforus.Controllers
            await userService.AddToDonationAmountAsync(price, currentUser.Id);
 
            return RedirectToAction(nameof(CampaignController.CampaignInfo), "Campaign", new {campaignId });
-
         }
-
-
-        //        [HttpGet("/Google-login")]
-        //        public IActionResult GoogleLogin()
-        //        {
-        //            var redirectUrl = "Google-response";
-        //            var properties = userService.ConfigureExternalAutheticationProp("Google", redirectUrl);
-        //
-        //            return new ChallengeResult("Google", properties);
-        //        }
-        //
-        //        [HttpGet("/Facebook-login")]
-        //        public IActionResult FacebookLogin()
-        //        {
-        //            var redirectUrl = "Google-response";
-        //            var properties = userService.ConfigureExternalAutheticationProp("Facebook", redirectUrl);
-        //
-        //            return new ChallengeResult("Facebook", properties);
-        //        }
-        //
-        //        [HttpGet("/Google-response")]
-        //        public async Task<IActionResult> GoogleResponse()
-        //        {
-        //            var info = await userService.GetExternalLoginInfoAsync();
-        //            if (info == null)
-        //            {
-        //                return RedirectToAction(nameof(Login));
-        //            }
-        //
-        //            var result = await userService.ExternalLoginSingnInAsync(info.LoginProvider, info.ProviderKey, false);
-        //            if (!result.Succeeded)
-        //            {
-        //                await userService.CreateAndLoginGoogleUserAsync(info);
-        //            }
-        //
-        //            return RedirectToAction(nameof(HomeController.Index), "Home");
-        //        }
     }
 }

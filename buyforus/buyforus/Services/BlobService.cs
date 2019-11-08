@@ -28,7 +28,7 @@ namespace buyforus.Services
             if (await blobContainer.CreateIfNotExistsAsync())
             {
                 await blobContainer.SetPermissionsAsync(new BlobContainerPermissions
-                { PublicAccess = BlobContainerPublicAccessType.Blob });
+                    {PublicAccess = BlobContainerPublicAccessType.Blob});
             }
 
             return blobContainer;
