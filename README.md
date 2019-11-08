@@ -10,8 +10,8 @@
 	Vágási István
 	Tóth Bálint
 
-###Hackathon Project
- BUY FOR US - A CHARITY PROJECT <3
+###Hackathon Project:
+ "BUY FOR US" - A CHARITY PROJECT <3
 
 
 ------------
