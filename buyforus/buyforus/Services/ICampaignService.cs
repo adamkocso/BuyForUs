@@ -10,7 +10,7 @@ namespace buyforus.Services
     public interface ICampaignService
     {
         Task<List<Campaign>> ListAllCampaignAsync();
-        Task AddCampaignAsync(AddCampaignViewModel addCampaignViewModel, User user);
+        Task<long> AddCampaignAsync(AddCampaignViewModel addCampaignViewModel, User user);
         DateTime SetExpiryDate();
         Task<Campaign> FindCampaignByIdAsync(long campaignId);
     }

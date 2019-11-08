@@ -32,13 +32,18 @@ namespace buyforus.Services
             return campaigns;
         }
 
-        public async Task AddCampaignAsync(AddCampaignViewModel addCampaignViewModel, User user)
+        public async Task<long> AddCampaignAsync(AddCampaignViewModel addCampaignViewModel, User user)
         {
-            var campaign = mapper.Map<AddCampaignViewModel, Campaign>(addCampaignViewModel);
-            campaign.UserId = user.Id;
-            campaign.ExpiryDate = SetExpiryDate();
-            await applicationContext.Campaigns.AddAsync(campaign);
+            var campaign = new Campaign
+            {
+                Description = addCampaignViewModel.Description,
+                Title = addCampaignViewModel.Title,
+                UserId = user.Id,
+                ExpiryDate = SetExpiryDate()
+            };
+            var result = await applicationContext.Campaigns.AddAsync(campaign);
             await applicationContext.SaveChangesAsync();
+            return campaign.CampaignId;
         }
 
         public DateTime SetExpiryDate()
