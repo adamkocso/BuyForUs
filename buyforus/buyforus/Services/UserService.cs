@@ -4,17 +4,20 @@ using AutoMapper;
 using buyforus.Models;
 using buyforus.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace buyforus.Services
 {
     public class UserService : IUserService
     {
+        private readonly ApplicationContext applicationContext;
         private readonly SignInManager<User> signInManager;
         private readonly UserManager<User> userManager;
         private readonly IMapper mapper;
 
-        public UserService(SignInManager<User> signInManager, UserManager<User> userManager, IMapper mapper)
+        public UserService(ApplicationContext applicationContext, SignInManager<User> signInManager, UserManager<User> userManager, IMapper mapper)
         {
+            this.applicationContext = applicationContext;
             this.signInManager = signInManager;
             this.userManager = userManager;
             this.mapper = mapper;
@@ -36,6 +39,23 @@ namespace buyforus.Services
             }
 
             return result;
+        }
+
+        public async Task EditDonaterProfile(DonaterViewModel model, string userId)
+        {
+            var user = await applicationContext.Users.FirstOrDefaultAsync(x => x.Id == userId);
+            user.UserName = model.Username;
+            user.Email = model.Email;
+            applicationContext.Users.Update(user);
+            await applicationContext.SaveChangesAsync();
+        }
+
+        public async Task EditOrgProfile(OrganizationViewModel model, string userId)
+        {
+            var user = await applicationContext.Users.FirstOrDefaultAsync(x => x.Id == userId);
+            mapper.Map(model, user);
+            applicationContext.Users.Update(user);
+            await applicationContext.SaveChangesAsync();
         }
 
         public async Task<IdentityResult> RegisterAsync(OrganizationViewModel model)
@@ -75,5 +95,4 @@ namespace buyforus.Services
             return errors;
         }
     }
-    
 }

@@ -9,7 +9,7 @@ using buyforus;
 namespace buyforus.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20191107221616_Buyforusdb")]
+    [Migration("20191108001412_Buyforusdb")]
     partial class Buyforusdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,22 +44,22 @@ namespace buyforus.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e3485555-7f13-4147-b50d-7480ac22ffde",
-                            ConcurrencyStamp = "b4ac45c2-5277-4940-a770-d71127781c9d",
+                            Id = "5b585415-59c6-41c0-917e-6ea422f2b7cd",
+                            ConcurrencyStamp = "8965d4c1-95ad-41bb-a0e9-d603900d9e3b",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "e5f83500-a7de-4e85-afc1-3d0e628650cf",
-                            ConcurrencyStamp = "a9ba97b4-b933-46ce-8256-2a1047e0c7c9",
+                            Id = "15b7a087-a108-4c70-8615-a714dd94b018",
+                            ConcurrencyStamp = "fe5bf5a3-c8db-4237-a6eb-9cb2b0025b2a",
                             Name = "Donator",
                             NormalizedName = "DONATOR"
                         },
                         new
                         {
-                            Id = "f675f104-d7d0-4920-a821-3853d5ead6a5",
-                            ConcurrencyStamp = "ae13509f-7bba-406f-a556-052632d25786",
+                            Id = "84543b5f-5a7a-4df5-b34d-aaa7ae083343",
+                            ConcurrencyStamp = "7a8c50e2-4c85-40e1-9ce3-52b7e833a759",
                             Name = "Organization",
                             NormalizedName = "ORGANIZATION"
                         });
