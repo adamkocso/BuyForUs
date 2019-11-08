@@ -1,38 +1,65 @@
 ﻿@model  CampaignViewModel
 
-<div class="container">
-    @if (@Model.Campaign.Uri == null)
-    {       
-        <img src="~/images/org-default.png" />
-    }
-    else
-    {
-        <img class="mypic" src="@Model.Campaign.Uri" />
-    }
-    <h1>@Model.Campaign.Title</h1>
-    <h2>@Model.Campaign.ExpiryDate</h2>
-    <h2>@Model.Campaign.TotalPrice</h2>
-    @if (Model.Campaign.Products != null) {
-        <table>
-            <tr>
-                @foreach (var product in Model.Campaign.Products)
-                {
-                    <td>@product.ProductName</td>
-                    <td>@product.Amount</td>
-                    <td>@product.Price</td>
-                    <td>
-                        <form method="post">
-                            <button type="submit" class="btn btn-sm btn-primary">Pay</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form method="post">
-                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                        </form>
-                    </td>
-                }
-            </tr>
-        </table>
-    }
-    <h1>No products</h1>
-</div>
+    <div class="container">
+        @if (@Model.Campaign.Uri == null)
+        {
+            <img src="~/images/org-default.png" />
+        }
+        else
+        {
+            <img class="mypic" src="@Model.Campaign.Uri" />
+        }
+        <h1>@Model.Campaign.Title</h1>
+        <h2>@Model.Campaign.ExpiryDate</h2>
+        <h2>@Model.Campaign.TotalPrice</h2>
+        <form asp-action="AddProduct" asp-controller="Product" asp-route-campaignId="@Model.Campaign.CampaignId" method="post">
+            <div class="form-header bg-light">
+                <h3> Add new product:</h3>
+            </div>
+            <div class="md-form">
+                <i class="prefix"></i>
+                <input asp-for="Product.ProductName" class="form-control">
+                <label asp-for="Product.ProductName"></label>
+                <span asp-validation-for="Product.ProductName" class="text-danger"></span>
+            </div>
+            <div class="md-form">
+                <i class="prefix"></i>
+                <input asp-for="Product.Amount" class="form-control">
+                <label asp-for="Product.Amount"></label>
+                <span asp-validation-for="Product.Amount" class="text-danger"></span>
+            </div>
+            <div class="md-form">
+                <i class="prefix"></i>
+                <input asp-for="Product.Price" class="form-control">
+                <label asp-for="Product.Price"></label>
+                <span asp-validation-for="Product.Price" class="text-danger"></span>
+            </div>
+            <div class="text-right">
+                <button class="btn btn-primary">Add product</button>
+            </div>
+        </form>
+        @if (Model.Campaign.Products != null)
+        {
+            <table>
+                <tr>
+                    @foreach (var product in Model.Campaign.Products)
+                    {
+                        <td>@product.ProductName</td>
+                        <td>@product.Amount</td>
+                        <td>@product.Price</td>
+                        <td>
+                            <form method="post">
+                                <button type="submit" class="btn btn-sm btn-primary">Pay</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="post">
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    }
+                </tr>
+            </table>
+        }
+        <h1>No products</h1>
+    </div>
