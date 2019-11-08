@@ -28,7 +28,7 @@ namespace buyforus.Controllers
             this.userManager = userManager;
         }
 
-        [HttpGet("/campaigninfo/{campaignId?}")]
+        [HttpGet("/campaigninfo/{campaignId}")]
         public async Task<IActionResult> CampaignInfo(long campaignId)
         {
             if (campaignId != 0)
@@ -55,7 +55,7 @@ namespace buyforus.Controllers
             {
                 var currentUser = await userManager.GetUserAsync(HttpContext.User);
                 var campaignId = await campaignService.AddCampaignAsync(addCampaignViewModel, currentUser);
-                return RedirectToAction(nameof(CampaignController.CampaignInfo), "Campaign",  campaignId);
+                return RedirectToAction(nameof(CampaignController.CampaignInfo), "Campaign",  new {campaignId});
             }
 
             return View(addCampaignViewModel);
