@@ -119,44 +119,6 @@ namespace buyforus.Controllers
            await userService.AddToDonationAmountAsync(price, currentUser.Id);
 
            return RedirectToAction(nameof(CampaignController.CampaignInfo), "Campaign", new {campaignId });
-
         }
-
-
-        //        [HttpGet("/Google-login")]
-        //        public IActionResult GoogleLogin()
-        //        {
-        //            var redirectUrl = "Google-response";
-        //            var properties = userService.ConfigureExternalAutheticationProp("Google", redirectUrl);
-        //
-        //            return new ChallengeResult("Google", properties);
-        //        }
-        //
-        //        [HttpGet("/Facebook-login")]
-        //        public IActionResult FacebookLogin()
-        //        {
-        //            var redirectUrl = "Google-response";
-        //            var properties = userService.ConfigureExternalAutheticationProp("Facebook", redirectUrl);
-        //
-        //            return new ChallengeResult("Facebook", properties);
-        //        }
-        //
-        //        [HttpGet("/Google-response")]
-        //        public async Task<IActionResult> GoogleResponse()
-        //        {
-        //            var info = await userService.GetExternalLoginInfoAsync();
-        //            if (info == null)
-        //            {
-        //                return RedirectToAction(nameof(Login));
-        //            }
-        //
-        //            var result = await userService.ExternalLoginSingnInAsync(info.LoginProvider, info.ProviderKey, false);
-        //            if (!result.Succeeded)
-        //            {
-        //                await userService.CreateAndLoginGoogleUserAsync(info);
-        //            }
-        //
-        //            return RedirectToAction(nameof(HomeController.Index), "Home");
-        //        }
     }
 }

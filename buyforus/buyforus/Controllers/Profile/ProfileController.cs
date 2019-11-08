@@ -71,8 +71,8 @@ namespace buyforus.Controllers
                         return View(editUserProfile);
                     }
                     await imageService.UploadAsync(editUserProfile.File, currentDonater.Id, "donater");
-                    await userService.EditDonaterProfile(editUserProfile, currentDonater.Id);
                     await userService.SetIndexImageAsync(currentDonater, "donater");
+                    await userService.EditDonaterProfile(editUserProfile, currentDonater.Id);
                 }
                 return RedirectToAction(nameof(DonaterProfile));
             }
@@ -103,9 +103,9 @@ namespace buyforus.Controllers
                         return View(editOrgProfile);
                     }
                     await imageService.UploadAsync(editOrgProfile.File, currentOrg.Id, "organization");
-                    await userService.EditOrgProfile(editOrgProfile, currentOrg.Id);
                     await userService.SetIndexImageAsync(currentOrg, "organization");
                 }
+                await userService.EditOrgProfile(editOrgProfile, currentOrg.Id);
                 return RedirectToAction(nameof(OrgProfile));
             }
 
