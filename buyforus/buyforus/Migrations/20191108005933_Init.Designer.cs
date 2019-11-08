@@ -9,7 +9,7 @@ using buyforus;
 namespace buyforus.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20191107224526_Init")]
+    [Migration("20191108005933_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,22 +44,22 @@ namespace buyforus.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0f9ce843-ec76-44d2-9558-ebc7cc288555",
-                            ConcurrencyStamp = "e0939c8e-da54-4a87-a144-86c27a7e13cc",
+                            Id = "2a0fc9b7-5dea-490c-a666-7ee1a930eae2",
+                            ConcurrencyStamp = "074cadf7-d940-4461-b7bd-4cae15028cfb",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "b7970442-b211-4876-88c5-9808326ad5a9",
-                            ConcurrencyStamp = "76a43afc-4515-470b-a1b2-af11908b771d",
+                            Id = "edee882c-2891-40be-a0b0-8342c9210501",
+                            ConcurrencyStamp = "235b7923-28dd-484b-b275-81c174f162ff",
                             Name = "Donator",
                             NormalizedName = "DONATOR"
                         },
                         new
                         {
-                            Id = "6b3abbed-cfe4-4d92-8bb4-40ba6a4ebdf3",
-                            ConcurrencyStamp = "7ab08868-8d07-481f-a563-995298bc3517",
+                            Id = "33262157-f87a-4273-ae43-1121c495863b",
+                            ConcurrencyStamp = "6d1f69bb-15d4-43f3-ba76-7d38889d194d",
                             Name = "Organization",
                             NormalizedName = "ORGANIZATION"
                         });
@@ -217,8 +217,6 @@ namespace buyforus.Migrations
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<int>("Money");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
