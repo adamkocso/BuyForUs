@@ -14,5 +14,6 @@ namespace buyforus.Models
         public int TotalPrice { get; set; }
         public List<Product> Products { get; set; }
         public string UserId { get; set; }
+        public string Uri { get; set; }
     }
 }

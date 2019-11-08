@@ -14,14 +14,17 @@ namespace buyforus.Services
         private readonly SignInManager<User> signInManager;
         private readonly UserManager<User> userManager;
         private readonly IMapper mapper;
+        private readonly IImageService imageService;
 
         public UserService(ApplicationContext applicationContext, SignInManager<User> signInManager,
-            UserManager<User> userManager, IMapper mapper)
+            UserManager<User> userManager,
+            IMapper mapper, IImageService imageService)
         {
             this.applicationContext = applicationContext;
             this.signInManager = signInManager;
             this.userManager = userManager;
             this.mapper = mapper;
+            this.imageService = imageService;
         }
 
         public async Task LogoutAsync()
@@ -59,8 +62,11 @@ namespace buyforus.Services
         public async Task EditOrgProfile(OrganizationViewModel model, string userId)
         {
             var user = await applicationContext.Users.FirstOrDefaultAsync(x => x.Id == userId);
+            var campaign = await applicationContext.Campaigns.FirstOrDefaultAsync(y => y.UserId == userId);
+            campaign.Uri = user.Uri;
             mapper.Map(model, user);
             applicationContext.Users.Update(user);
+            applicationContext.Campaigns.Update(campaign);
             await applicationContext.SaveChangesAsync();
         }
 
@@ -99,6 +105,22 @@ namespace buyforus.Services
             }
 
             return errors;
+        }
+
+        public async Task SetIndexImageAsync(User user, string blobContainerName)
+        {
+            var pictures = await imageService.ListAsync(user.Id, blobContainerName);
+            user.Uri = pictures[0].Path;
+            applicationContext.Users.Update(user);
+            await applicationContext.SaveChangesAsync();
+        }
+
+        public async Task AddToDonationAmountAsync(int price, string userId)
+        {
+            var user = await applicationContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            user.DonationAmount += price;
+            applicationContext.Users.Update(user);
+            await applicationContext.SaveChangesAsync();
         }
     }
 }

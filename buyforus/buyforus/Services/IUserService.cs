@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using buyforus.Models;
 using buyforus.ViewModels;
 using Microsoft.AspNetCore.Identity;
 
@@ -14,5 +15,7 @@ namespace buyforus.Services
         Task WithdrawMoneyAsync(ApiViewModel model);
         Task EditDonaterProfile(DonaterViewModel model, string userId);
         Task EditOrgProfile(OrganizationViewModel model, string userId);
+        Task SetIndexImageAsync(User user, string blobContainerName);
+        Task AddToDonationAmountAsync (int amount, string userId);
     }
 }

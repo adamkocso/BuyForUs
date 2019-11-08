@@ -20,12 +20,13 @@ namespace buyforus.Controllers
     {
         private readonly ICampaignService campaignService;
         private readonly UserManager<User> userManager;
+        private readonly IProductService productService;
 
-        public CampaignController(ICampaignService campaignService,
-            UserManager<User> userManager)
+        public CampaignController(ICampaignService campaignService, UserManager<User> userManager, IProductService productService)
         {
             this.campaignService = campaignService;
             this.userManager = userManager;
+            this.productService = productService;
         }
 
         [HttpGet("/campaigninfo/{campaignId}")]
@@ -35,8 +36,9 @@ namespace buyforus.Controllers
             {
                 var currentUser = await userManager.GetUserAsync(HttpContext.User);
                 var campaign = await campaignService.FindCampaignByIdAsync(campaignId);
+                var product = await productService.FindProductByCampaignIdAsync(campaignId);
                 return View(new CampaignViewModel
-                    {Campaign = campaign, User = currentUser});
+                    { Campaign = campaign, User = currentUser, Products = product});
             }
 
             return RedirectToAction(nameof(HomeController.Index), "Home");

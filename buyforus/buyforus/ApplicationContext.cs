@@ -9,6 +9,7 @@ namespace buyforus
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         public ApplicationContext(DbContextOptions options) : base(options)
         {

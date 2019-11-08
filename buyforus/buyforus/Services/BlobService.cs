@@ -10,7 +10,6 @@ namespace buyforus.Services
 {
     public class BlobService : IBlobService
     {
-        private readonly string blobContainerName = "photos";
         private CloudBlobClient blobClient;
         private CloudBlobContainer blobContainer;
         private string accessKey = string.Empty;
@@ -22,7 +21,7 @@ namespace buyforus.Services
             this.account = CloudStorageAccount.Parse(accessKey);
         }
 
-        public async Task<CloudBlobContainer> GetBlobContainer()
+        public async Task<CloudBlobContainer> GetBlobContainer(string blobContainerName)
         {
             var blobClient = GetClient();
             blobContainer = blobClient.GetContainerReference(blobContainerName);

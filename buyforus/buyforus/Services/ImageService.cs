@@ -1,6 +1,8 @@
 ﻿using buyforus.Models;
+using buyforus.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.Storage.Blob;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,42 +20,34 @@ namespace buyforus.Services
             this.blobService = blobService;
         }
 
-        //public List<string> Validate(IFormFileCollection files, ViewModel newHotel)
-        //{
-        //    foreach (var file in files)
-        //    {
-        //        if (CheckImageExtension(file))
-        //        {
-        //            if (file.Length < fourMegaByte)
-        //            {
-        //                return newHotel.ErrorMessages;
-        //            }
-        //            else
-        //            {
-        //                newHotel.ErrorMessages.Add("The image max 4 MB");
-        //                return newHotel.ErrorMessages;
-        //            }
-        //        }
-        //        else
-        //        {
-        //            newHotel.ErrorMessages.Add("Please add only image formats!");
-        //            return newHotel.ErrorMessages;
-        //        }
-        //    }
-
-        //    return newHotel.ErrorMessages;
-        //}
-
-        public async Task UploadAsync(IFormFileCollection files, long hotelId)
+        public List<string> Validate(IFormFile file, List<string> errorMessages)
         {
-            var blobcontainer = await blobService.GetBlobContainer();
-            for (int i = 0; i < files.Count; i++)
+            if (CheckImageExtension(file))
             {
-                var blob = blobcontainer.GetBlockBlobReference(hotelId + "/" + files[i].FileName);
-                using (var stream = files[i].OpenReadStream())
+                if (file.Length < fourMegaByte)
                 {
-                    await blob.UploadFromStreamAsync(stream);
+                    return errorMessages;
                 }
+                else
+                {
+                    errorMessages.Add("The image max 4 MB");
+                    return errorMessages;
+                }
+            }
+            else
+            {
+                errorMessages.Add("Please add only image formats!");
+                return errorMessages;
+            }
+        }
+
+        public async Task UploadAsync(IFormFile file, string Id, string blobContainerName)
+        {
+            var blobcontainer = await blobService.GetBlobContainer(blobContainerName);
+            var blob = blobcontainer.GetBlockBlobReference(Id + "/" + file.FileName);
+            using (var stream = file.OpenReadStream())
+            {
+                await blob.UploadFromStreamAsync(stream);
             }
         }
 
@@ -64,43 +58,56 @@ namespace buyforus.Services
             return extensions.Contains(fileNameSegments[fileNameSegments.Length - 1]);
         }
 
-        public async Task<List<ImageDetails>> ListAllFoldersAsync()
+        public async Task<List<ImageDetails>> ListAsync(string userId, string blobContainerName)
         {
             var imageList = new List<ImageDetails>();
             BlobContinuationToken blobContinuationToken = null;
             do
             {
-                var blobContainer = await blobService.GetBlobContainer();
+                var blobContainer = await blobService.GetBlobContainer(blobContainerName);
                 var response = await blobContainer.ListBlobsSegmentedAsync(null, blobContinuationToken);
                 blobContinuationToken = response.ContinuationToken;
-                await GetAllBlobDirectoryAsync(imageList);
+                await GetBlobDirectoryAsync(imageList, userId, blobContainerName);
             } while (blobContinuationToken != null);
 
             return imageList;
         }
 
-        private async Task GetAllBlobDirectoryAsync(List<ImageDetails> imageList)
+        private async Task GetBlobDirectoryAsync(List<ImageDetails> imageList, string Id, string blobContainerName)
         {
-            var blobContainer = await blobService.GetBlobContainer();
+            var blobContainer = await blobService.GetBlobContainer(blobContainerName);
             foreach (var item in blobContainer.ListBlobs())
             {
                 if (item is CloudBlobDirectory)
                 {
-                    GetAllImagesFromBlobs(item, imageList);
+                    GetImagesFromBlobs(item, imageList, Id);
                 }
             }
         }
 
-        private void GetAllImagesFromBlobs(IListBlobItem item, List<ImageDetails> imageList)
+        private void GetImagesFromBlobs(IListBlobItem item, List<ImageDetails> imageList, string Id)
         {
             CloudBlobDirectory directory = (CloudBlobDirectory) item;
-            IEnumerable<IListBlobItem> blobs = directory.ListBlobs();
-            var blob = blobs.First();
-            imageList.Add(new ImageDetails
+            IEnumerable<IListBlobItem> blobs = directory.ListBlobs(true);
+            foreach (var blob in blobs)
             {
-                Name = blob.Uri.Segments[blob.Uri.Segments.Length - 1],
-                Path = blob.Uri.ToString()
-            });
+                var folderId = GetFolders(blob.Uri);
+                if (Id == folderId)
+                {
+                    imageList.Add(new ImageDetails
+                    {
+                        Name = blob.Uri.Segments[blob.Uri.Segments.Length - 1],
+                        Path = blob.Uri.ToString()
+                    });
+                }
+            }
+        }
+
+        private static string GetFolders(Uri uri)
+        {
+            var path = uri.ToString().Split("/");
+            var folder = path[path.Length - 2];
+            return folder;
         }
     }
 }
