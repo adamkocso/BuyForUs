@@ -13,7 +13,7 @@
                         <h3 class="text-center">Pay Invoice</h3>
                     </div>
                     <hr>
-                    <form action="/echo" method="post" novalidate="novalidate" class="needs-validation">
+                    <form method="post" asp-controller="Payment" asp-action="Payed" novalidate="novalidate" class="needs-validation">
                         <div class="form-group text-center">
                             <ul class="list-inline">
                                 <li class="list-inline-item"><img src="~/images/iconfinder_Visa-Curved_70599.png" class="text-muted fa fa-cc-visa fa-2x"></img></li>
@@ -23,7 +23,7 @@
                         </div>
                         <div class="form-group">
                             <label for="cc-payment" class="control-label mb-1">Payment amount</label>
-                            <input id="cc-payment" name="cc-payment" type="text" class="form-control" aria-required="true" aria-invalid="false" required value="100.00">
+                            <input id="cc-payment" name="cc-payment" type="text" class="form-control" aria-required="true" aria-invalid="false" required value="@ViewData["donationAmount"]">
                             <span class="invalid-feedback">Enter the payment amount</span>
                         </div>
                         <div class="form-group has-success">
@@ -65,11 +65,11 @@
                             <span class="help-block" data-valmsg-for="x_zip" data-valmsg-replace="true"></span>
                         </div>
                         <div>
-                            <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
-                                <i class="fa fa-lock fa-lg"></i>&nbsp;
-                                <span id="payment-button-amount">Pay $100.00</span>
-                                <span id="payment-button-sending" style="display:none;">Sending…</span>
-                            </button>
+                                <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
+                                    <i class="fa fa-lock fa-lg"></i>&nbsp;
+                                    <span id="payment-button-amount">Pay @ViewData["donationAmount"] HUF</span>
+                                    <span id="payment-button-sending" style="display:none;">Sending…</span>
+                                </button>
                         </div>
                     </form>
                 </div>

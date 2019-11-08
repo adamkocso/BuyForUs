@@ -8,8 +8,14 @@ namespace buyforus.Controllers.Payment
 {
     public class PaymentController : Controller
     {
-        [HttpGet("/payment")]
-        public IActionResult Payment()
+        [HttpPost("/payment")]
+        public IActionResult Payment(int donationAmount)
+        {
+            ViewData["donationAmount"] = donationAmount;
+            return View();
+        }
+        [HttpPost("/payed")]
+        public IActionResult Payed()
         {
             return View();
         }
