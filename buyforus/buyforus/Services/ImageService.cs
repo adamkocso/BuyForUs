@@ -13,7 +13,7 @@ namespace buyforus.Services
     {
         private readonly IBlobService blobService;
         private int fourMegaByte = 4 * 1024 * 1024;
-        private readonly string[] validExtensions = { "jpg", "png", "jpeg" };
+        private readonly string[] validExtensions = {"jpg", "png", "jpeg"};
 
         public ImageService(IBlobService blobService)
         {
@@ -87,7 +87,7 @@ namespace buyforus.Services
 
         private void GetImagesFromBlobs(IListBlobItem item, List<ImageDetails> imageList, string Id)
         {
-            CloudBlobDirectory directory = (CloudBlobDirectory)item;
+            CloudBlobDirectory directory = (CloudBlobDirectory) item;
             IEnumerable<IListBlobItem> blobs = directory.ListBlobs(true);
             foreach (var blob in blobs)
             {

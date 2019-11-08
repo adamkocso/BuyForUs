@@ -14,22 +14,23 @@ namespace buyforus.Controllers
         private readonly IUserService userService;
         private readonly UserManager<User> userManager;
 
-        public UserController(IUserService userService, UserManager<Models.User> userManager)
+        public UserController(IUserService userService, UserManager<User> userManager)
         {
             this.userService = userService;
             this.userManager = userManager;
         }
-        
+
         [HttpGet("/OrganizationReg")]
         public IActionResult OrganizationRegistration()
         {
             return View();
         }
-        
+
         [HttpPost("/OrganizationReg")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> OrganizationRegistration(OrganizationViewModel model)
         {
+            ModelState.Remove("UserName");
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -49,13 +50,13 @@ namespace buyforus.Controllers
 
             return View(model);
         }
-        
+
         [HttpGet("/DonaterReg")]
         public IActionResult DonaterRegistration()
         {
             return View();
         }
-        
+
         [HttpPost("/DonaterReg")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DonaterRegistration(DonaterViewModel model)
@@ -106,12 +107,14 @@ namespace buyforus.Controllers
 
             return View(model);
         }
+
         [HttpGet("/logout")]
         public async Task<IActionResult> Logout()
         {
             await userService.LogoutAsync();
-            return RedirectToAction(nameof(Landing.LandingController.LandingPage),"Landing");
+            return RedirectToAction(nameof(Landing.LandingController.LandingPage), "Landing");
         }
+
         [HttpPost("/addAmountToDonationAmount")]
         public async Task<IActionResult> AddToDonationAmount(int price, long campaignId)
         {

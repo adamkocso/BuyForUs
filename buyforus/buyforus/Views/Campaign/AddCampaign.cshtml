@@ -1,29 +1,28 @@
 @model AddCampaignViewModel
-
 <div class="container">
-       <br/>
-       <div class="row">
-           <div class="col-md-3"></div>
-           <div class="card col-md-6">
-               <br/>
-               <h3> Add new campaign:</h3>
-               <form asp-action="AddCampaign" asp-controller="Campaign" method="post">
-                   <div class="md-form">
-                       <input asp-for="Title" class="form-control">
-                       <label asp-for="Title">Title</label>
-                       <span asp-validation-for="Title" class="text-danger"></span>
-                   </div>
-                   <div class="md-form">
-                       <input asp-for="Description" class="form-control">
-                       <label asp-for="Description">Description</label>
-                       <span asp-validation-for="Description" class="text-danger"></span>
-                   </div>
-                   <div class="text-center">
-                       <button class="btn btn-primary" id="add-campaign">Save changes</button>
-                   </div>
-               </form>
-           </div>
-           <div class="col-md-3"></div>
-       </div>
-              <br/>
+    <br/>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="card col-md-6">
+            <br/>
+            <h3> Add new campaign:</h3>
+            <form asp-action="AddCampaign" asp-controller="Campaign" method="post">
+                <div class="md-form">
+                    <input asp-for="Title" class="form-control">
+                    <label asp-for="Title">Title</label>
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="md-form">
+                    <input asp-for="Description" class="form-control">
+                    <label asp-for="Description">Description</label>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-primary" id="add-campaign">Save changes</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <br/>
 </div>

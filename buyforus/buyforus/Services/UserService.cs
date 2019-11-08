@@ -16,7 +16,8 @@ namespace buyforus.Services
         private readonly IMapper mapper;
         private readonly IImageService imageService;
 
-        public UserService(ApplicationContext applicationContext, SignInManager<User> signInManager, UserManager<User> userManager,
+        public UserService(ApplicationContext applicationContext, SignInManager<User> signInManager,
+            UserManager<User> userManager,
             IMapper mapper, IImageService imageService)
         {
             this.applicationContext = applicationContext;
@@ -42,6 +43,11 @@ namespace buyforus.Services
             }
 
             return result;
+        }
+
+        public async Task WithdrawMoneyAsync(ApiViewModel model)
+        {
+            var user = await userManager.FindByNameAsync(model.UserName);
         }
 
         public async Task EditDonaterProfile(DonaterViewModel model, string userId)
@@ -93,7 +99,7 @@ namespace buyforus.Services
             model.ErrorMessages = CheckLoginErrors(result, model.ErrorMessages);
             return model.ErrorMessages;
         }
-        
+
         private List<string> CheckLoginErrors(SignInResult result, List<string> errors)
         {
             if (!result.Succeeded)
@@ -117,7 +123,7 @@ namespace buyforus.Services
             var user = await applicationContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
             user.DonationAmount += price;
             applicationContext.Users.Update(user);
-           await applicationContext.SaveChangesAsync();
+            await applicationContext.SaveChangesAsync();
         }
     }
 }

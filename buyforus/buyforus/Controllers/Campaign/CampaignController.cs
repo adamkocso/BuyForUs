@@ -55,7 +55,7 @@ namespace buyforus.Controllers
             {
                 var currentUser = await userManager.GetUserAsync(HttpContext.User);
                 var campaignId = await campaignService.AddCampaignAsync(addCampaignViewModel, currentUser);
-                return RedirectToAction(nameof(CampaignController.CampaignInfo), "Campaign",  new {campaignId});
+                return RedirectToAction(nameof(CampaignController.CampaignInfo), "Campaign", new {campaignId});
             }
 
             return View(addCampaignViewModel);
