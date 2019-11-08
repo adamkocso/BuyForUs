@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace buyforus
 {
-    public class ApplicationContext:IdentityDbContext<User>
+    public class ApplicationContext : IdentityDbContext<User>
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }
@@ -19,9 +19,9 @@ namespace buyforus
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<IdentityRole>().HasData(
-                new IdentityRole { Name = "Admin", NormalizedName = "Admin".ToUpper() },
-                new IdentityRole { Name = "Donator", NormalizedName = "Donator".ToUpper() },
-                new IdentityRole { Name = "Organization", NormalizedName = "Organization".ToUpper() }
+                new IdentityRole {Name = "Admin", NormalizedName = "Admin".ToUpper()},
+                new IdentityRole {Name = "Donator", NormalizedName = "Donator".ToUpper()},
+                new IdentityRole {Name = "Organization", NormalizedName = "Organization".ToUpper()}
             );
         }
     }

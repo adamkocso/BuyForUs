@@ -12,6 +12,7 @@ namespace buyforus.Services
         Task<List<string>> LoginAsync(LoginViewModel model);
         Task<IdentityResult> RegisterAsync(OrganizationViewModel model);
         Task<IdentityResult> RegisterAsync(DonaterViewModel model);
+        Task WithdrawMoneyAsync(ApiViewModel model);
         Task EditDonaterProfile(DonaterViewModel model, string userId);
         Task EditOrgProfile(OrganizationViewModel model, string userId);
         Task SetIndexImageAsync(User user, string blobContainerName);
