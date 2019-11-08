@@ -22,7 +22,8 @@ namespace buyforus.Services
 
         public async Task<Campaign> FindCampaignByIdAsync(long campaignId)
         {
-            var campaign = await applicationContext.Campaigns.SingleOrDefaultAsync(x => x.CampaignId == campaignId);
+            var campaign = await applicationContext.Campaigns.Include(x => x.Products)
+                .SingleOrDefaultAsync(x => x.CampaignId == campaignId);
             return campaign;
         }
 

@@ -9,7 +9,7 @@ using buyforus;
 namespace buyforus.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20191108001412_Buyforusdb")]
+    [Migration("20191108020837_Buyforusdb")]
     partial class Buyforusdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,22 +44,22 @@ namespace buyforus.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "5b585415-59c6-41c0-917e-6ea422f2b7cd",
-                            ConcurrencyStamp = "8965d4c1-95ad-41bb-a0e9-d603900d9e3b",
+                            Id = "68464eae-3009-4df2-aca9-8299103f7c28",
+                            ConcurrencyStamp = "fab04706-a76f-42aa-8469-00d26e556234",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "15b7a087-a108-4c70-8615-a714dd94b018",
-                            ConcurrencyStamp = "fe5bf5a3-c8db-4237-a6eb-9cb2b0025b2a",
+                            Id = "3c09474b-719f-4b23-90ff-19852c43416c",
+                            ConcurrencyStamp = "39267b68-9372-4d1b-b702-43fc0c700648",
                             Name = "Donator",
                             NormalizedName = "DONATOR"
                         },
                         new
                         {
-                            Id = "84543b5f-5a7a-4df5-b34d-aaa7ae083343",
-                            ConcurrencyStamp = "7a8c50e2-4c85-40e1-9ce3-52b7e833a759",
+                            Id = "1c5645a8-0e16-43e9-9578-ceff2390a832",
+                            ConcurrencyStamp = "61a0f17a-b717-4a06-8a1f-36853e8dc00e",
                             Name = "Organization",
                             NormalizedName = "ORGANIZATION"
                         });
@@ -178,7 +178,7 @@ namespace buyforus.Migrations
 
                     b.Property<int>("Amount");
 
-                    b.Property<long?>("CampaignId");
+                    b.Property<long>("CampaignId");
 
                     b.Property<int>("Price");
 
@@ -188,7 +188,7 @@ namespace buyforus.Migrations
 
                     b.HasIndex("CampaignId");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("buyforus.Models.User", b =>
@@ -313,7 +313,8 @@ namespace buyforus.Migrations
                 {
                     b.HasOne("buyforus.Models.Campaign")
                         .WithMany("Products")
-                        .HasForeignKey("CampaignId");
+                        .HasForeignKey("CampaignId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
