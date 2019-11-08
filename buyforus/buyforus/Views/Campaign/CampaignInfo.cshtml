@@ -1,16 +1,16 @@
 ﻿@model  CampaignViewModel
 
-<div>
-    @if (@Model.User.Uri == null)
+<div class="container"
+    @if (@Model.Campaign.Uri != null)
     {       
-        <img src="~/images/org-default.png" />
+        <img src="@Model.Campaign.Uri">
     }
     else
     {
-        <img src="@Model.User.Uri" />
+        <img src="~/images/org-default.png">
     }
     <h1>@Model.Campaign.Title</h1>
-    <h2>@Model.Campaign.ExpiryTime</h2>
+    <h2>@Model.Campaign.ExpiryDate</h2>
     <h2>@Model.Campaign.TotalPrice</h2>
     @if (Model.Campaign.Products != null) {
         <table>

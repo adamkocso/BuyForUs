@@ -40,7 +40,6 @@
                         @if (User.IsInRole("Organization"))
                         {
                             <a class="dropdown-item" asp-controller="Profile" asp-action="OrgProfile">My profile</a>
-                            <a class="dropdown-item" asp-controller="Campaign" asp-action="CampaignInfo">Manage campaigns</a>
                         }
                         <a class="dropdown-item" asp-controller="User" asp-action="Logout">Logout</a>
                     </div>

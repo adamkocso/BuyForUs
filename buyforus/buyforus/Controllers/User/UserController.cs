@@ -80,7 +80,7 @@ namespace buyforus.Controllers
             return View(model);
         }
         
-        [HttpGet("/login")]
+        [HttpGet("/account/login")]
         public async Task<IActionResult> Login()
         {
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
@@ -88,7 +88,7 @@ namespace buyforus.Controllers
             return View(new LoginViewModel());
         }
 
-        [HttpPost("/login")]
+        [HttpPost("/account/login")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {

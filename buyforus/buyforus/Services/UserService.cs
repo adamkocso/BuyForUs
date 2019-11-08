@@ -35,7 +35,11 @@ namespace buyforus.Services
         {
             var donater = new User {UserName = model.Username, Email = model.Email};
             var result = await userManager.CreateAsync(donater, model.Password);
-            await userManager.AddToRoleAsync(donater, "Donator");
+            if (result.Succeeded)
+            {
+                await userManager.AddToRoleAsync(donater, "Donator");
+                return result;
+            }
 
             return result;
         }
@@ -52,8 +56,11 @@ namespace buyforus.Services
         public async Task EditOrgProfile(OrganizationViewModel model, string userId)
         {
             var user = await applicationContext.Users.FirstOrDefaultAsync(x => x.Id == userId);
+            var campaign = await applicationContext.Campaigns.FirstOrDefaultAsync(y => y.UserId == userId);
+            campaign.Uri = user.Uri;
             mapper.Map(model, user);
             applicationContext.Users.Update(user);
+            applicationContext.Campaigns.Update(campaign);
             await applicationContext.SaveChangesAsync();
         }
 
@@ -61,7 +68,10 @@ namespace buyforus.Services
         {
             var organization = mapper.Map<OrganizationViewModel, User>(model);
             var result = await userManager.CreateAsync(organization, model.Password);
-            await userManager.AddToRoleAsync(organization, "Organization");
+            if (result.Succeeded)
+            {
+                await userManager.AddToRoleAsync(organization, "Organization");
+            }
 
             return result;
         }

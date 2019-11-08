@@ -16,27 +16,33 @@ namespace buyforus.Controllers
         private readonly IMapper mapper;
         private readonly UserManager<User> userManager;
         private readonly IImageService imageService;
+        private readonly ICampaignService campaignService;
 
-        public ProfileController(IUserService userService, IMapper mapper, UserManager<User> userManager, IImageService imageService)
+        public ProfileController(IUserService userService, IMapper mapper, UserManager<User> userManager,
+            IImageService imageService, ICampaignService campaignService)
         {
             this.userService = userService;
             this.mapper = mapper;
             this.userManager = userManager;
             this.imageService = imageService;
+            this.campaignService = campaignService;
         }
 
         [HttpGet("/donaterprofile")]
         public async Task<IActionResult> DonaterProfile()
         {
             var currentDonater = await userManager.GetUserAsync(HttpContext.User);
-            return View(new UserViewModel{User = currentDonater});
+
+            return View(new UserViewModel{ User = currentDonater });
         }
 
         [HttpGet("/orgprofile")]
         public async Task<IActionResult> OrgProfile()
         {
             var currentOrg = await userManager.GetUserAsync(HttpContext.User);
-            return View(new UserViewModel{User = currentOrg});
+            var campaign = await campaignService.FindCampaignByUserId(currentOrg.Id);
+
+            return View(new UserViewModel{User = currentOrg, Campaign = campaign });
         }
 
         [HttpGet("/editdonaterprofile")]
