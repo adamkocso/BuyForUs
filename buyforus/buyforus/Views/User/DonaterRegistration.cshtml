@@ -4,7 +4,6 @@
     ViewData["Title"] = "Donater Registration";
 }
 
-
 <div class="container">
     <br />
     <div class="row">
@@ -15,8 +14,7 @@
                 <h6>Please fill out the form!</h6>
                 <hr />
             </div>
-            <form method="post">
-                <form class="px-5 py-7">
+            <form asp-controller="User" asp-action="DonaterRegistration" method="post" class="px-5 py-7">
                     <div asp-validation-summary="All" class="text-danger"></div>
                     <div class="md-form">
                         <label asp-for="Email"></label>
@@ -40,7 +38,6 @@
                     </div>
                     <button type="submit" class="btn btn-outline-info">Register</button>
                 </form>
-            </form>
         </div>
         <div class="col-md-2"></div>
     </div>
