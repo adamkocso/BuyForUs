@@ -50,6 +50,7 @@
                     <h4 class="card-title">Description</h4>
                     <h4 class="card-text">@Model.Campaign.Description</h4>
                 </div>
+                    <a asp-controller="Profile" asp-action="ViewOrgProfile" asp-route-ownerId="@Model.Campaign.UserId">More info</a>
             </div>
         </div>
     </div>

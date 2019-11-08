@@ -8,7 +8,7 @@
         <div class="col-md-3">
             @if (Model.User.Uri == null)
             {
-                <img src="images/org-default.png" />
+                <img src="~/images/org-default.png" />
             }
             else
             {
@@ -17,16 +17,17 @@
         </div>
         <div class="col-md-9">
             <h3>@Model.User.CompanyName</h3>
-            @*
-            Ide kell egy if függvény
-            *@
-            <a class="btn btn-sm btn-outline-info" role="button" asp-controller="Profile" asp-action="EditOrgProfile" asp-route-userId="@Model.User.Id">Edit</a>
-            <span>Private informations</span>
-            <ul>
-                <li>@Model.User.RepresentativeName</li>
-                <li>@Model.User.Headquarters</li>
-                <li>@Model.User.TaxNumber</li>
-            </ul>
+
+            @if (@Model.User.Id.Equals(@Model.OwnerId))
+            {
+                <a class="btn btn-sm btn-outline-info" role="button" asp-controller="Profile" asp-action="EditOrgProfile" asp-route-userId="@Model.User.Id">Edit</a>
+                <span>Private informations</span>
+                <ul>
+                    <li>@Model.User.RepresentativeName</li>
+                    <li>@Model.User.Headquarters</li>
+                    <li>@Model.User.TaxNumber</li>
+                </ul>
+            }
         </div>
     </div>
     <p>Public informations</p>
