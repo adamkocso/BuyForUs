@@ -48,7 +48,8 @@ namespace buyforus.Migrations
                     Headquarters = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     CharityType = table.Column<string>(nullable: true),
-                    Website = table.Column<string>(nullable: true)
+                    Website = table.Column<string>(nullable: true),
+                    DonationAmount = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -171,7 +172,8 @@ namespace buyforus.Migrations
                     Description = table.Column<string>(nullable: true),
                     ExpiryDate = table.Column<DateTime>(nullable: false),
                     TotalPrice = table.Column<int>(nullable: false),
-                    UserId = table.Column<string>(nullable: true)
+                    UserId = table.Column<string>(nullable: true),
+                    Uri = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -185,7 +187,7 @@ namespace buyforus.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Product",
+                name: "Products",
                 columns: table => new
                 {
                     ProductId = table.Column<long>(nullable: false)
@@ -193,33 +195,33 @@ namespace buyforus.Migrations
                     ProductName = table.Column<string>(nullable: true),
                     Amount = table.Column<int>(nullable: false),
                     Price = table.Column<int>(nullable: false),
-                    CampaignId = table.Column<long>(nullable: true)
+                    CampaignId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Product", x => x.ProductId);
+                    table.PrimaryKey("PK_Products", x => x.ProductId);
                     table.ForeignKey(
-                        name: "FK_Product_Campaigns_CampaignId",
+                        name: "FK_Products_Campaigns_CampaignId",
                         column: x => x.CampaignId,
                         principalTable: "Campaigns",
                         principalColumn: "CampaignId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "8fe502ee-7ee8-45fb-9953-2e9b3f2b86fc", "ecc7b797-bf0a-4a33-9657-8cf0679ebe59", "Admin", "ADMIN" });
+                values: new object[] { "94e196a7-03fa-41e3-af99-fd90af3cec3d", "10f4da59-7556-4ee1-ac26-fc65dfbac3e2", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "753db655-6e47-430d-b4bc-1ff93476d665", "b37e3af3-e527-449f-abea-beec58ba42bd", "Donator", "DONATOR" });
+                values: new object[] { "0f515486-c1b3-4835-ac60-d40fd454309f", "0e2313cf-891d-4da8-9349-32d8829110d3", "Donator", "DONATOR" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "de3bae7f-4096-4d22-aefd-9a4abd355d96", "cf8e8fef-20a0-4a7a-b5b8-e78f47d07e5d", "Organization", "ORGANIZATION" });
+                values: new object[] { "5a33bb45-566a-48de-8db1-a1607a3edb73", "0608da69-2b55-401b-a475-22eb1ff46c36", "Organization", "ORGANIZATION" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -264,8 +266,8 @@ namespace buyforus.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Product_CampaignId",
-                table: "Product",
+                name: "IX_Products_CampaignId",
+                table: "Products",
                 column: "CampaignId");
         }
 
@@ -287,7 +289,7 @@ namespace buyforus.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Product");
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

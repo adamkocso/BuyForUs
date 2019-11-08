@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace buyforus.ViewModels
 {
@@ -28,5 +30,7 @@ namespace buyforus.ViewModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        public IFormFile File { get; set; }
+        public List<string> ErrorMessages { get; set; } = new List<string>();
     }
 }

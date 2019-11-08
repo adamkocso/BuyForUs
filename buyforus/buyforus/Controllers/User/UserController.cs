@@ -80,7 +80,7 @@ namespace buyforus.Controllers
             return View(model);
         }
         
-        [HttpGet("/login")]
+        [HttpGet("/account/login")]
         public async Task<IActionResult> Login()
         {
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
@@ -88,7 +88,7 @@ namespace buyforus.Controllers
             return View(new LoginViewModel());
         }
 
-        [HttpPost("/login")]
+        [HttpPost("/account/login")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
@@ -111,6 +111,15 @@ namespace buyforus.Controllers
         {
             await userService.LogoutAsync();
             return RedirectToAction(nameof(Landing.LandingController.LandingPage),"Landing");
+        }
+        [HttpPost("/addAmountToDonationAmount")]
+        public async Task<IActionResult> AddToDonationAmount(int price, long campaignId)
+        {
+            var currentUser = await userManager.GetUserAsync(HttpContext.User);
+           await userService.AddToDonationAmountAsync(price, currentUser.Id);
+
+           return RedirectToAction(nameof(CampaignController.CampaignInfo), "Campaign", new {campaignId });
+
         }
 
 

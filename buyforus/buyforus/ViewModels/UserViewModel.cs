@@ -6,5 +6,6 @@ namespace buyforus.ViewModels
     {
         public User User { get; set; }
         public string OwnerId { get; set; }
+        public Campaign Campaign { get; set; }
     }
 }

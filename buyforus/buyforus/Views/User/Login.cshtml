@@ -6,50 +6,37 @@
     ViewData["Title"] = "Log in";
 }
 
-<h2>@ViewData["Title"]</h2>
-<div class="row">
-    <div class="col-md-12">
-        <section>
-            <form asp-controller="User" asp-action="Login" method="post">
-                <h4>Use a local account to log in.</h4>
-                @if (Model.ErrorMessages != null)
-                {
-                    @foreach (var error in Model.ErrorMessages)
-                    {
-                        <span class="text-danger">error</span>
-                    }
-                }
-                <hr/>
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Email"></label>
-                    <input asp-for="Email" class="form-control"/>
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Password"></label>
-                    <input asp-for="Password" class="form-control"/>
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Log in</button>
-                </div>
-            </form>
-            <div style="width: 100%; height: 20px; border-bottom: 1px solid black; text-align: center">
-                <span style="font-size: 20px; background-color: white; padding: 0 10px;">
-                    OR
-                </span>
+    <div class="container">
+        <h2>@ViewData["Title"]</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <section>
+                    <form asp-controller="User" asp-action="Login" method="post">
+                        <h4>Use a local account to log in.</h4>
+                        @if (Model.ErrorMessages != null)
+                        {
+                            @foreach (var error in Model.ErrorMessages)
+                            {
+                                <span class="text-danger">error</span>
+                            }
+                        }
+                        <hr />
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Email"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Password"></label>
+                            <input asp-for="Password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Log in</button>
+                        </div>
+                    </form>
+                </section>
             </div>
-            @* <div class="google-btn"> *@
-            @*     <a class="btn btn-danger" asp-controller="Login" asp-action="GoogleLogin"> *@
-            @*         <i class="fab fa-google"></i> @localizer["Login with Google"] *@
-            @*     </a> *@
-            @* </div> *@
-            @* <div class="google-btn"> *@
-            @*     <a class="btn btn-primary" asp-controller="Login" asp-action="FacebookLogin"> *@
-            @*         <i class="fab fa-facebook"></i> @localizer["Login with Facebook"] *@
-            @*     </a> *@
-            @* </div> *@
-        </section>
+        </div>
     </div>
-</div>
