@@ -1,8 +1,8 @@
-# Team SeaShark 
+Team SeaShark 
 
 
 
-###Team members
+Team members
 
     Földi Krisztina
     Horváth Péter
@@ -10,14 +10,14 @@
 	Vágási István
 	Tóth Bálint
 
-###Hackathon Project
+Hackathon Project
  BUY FOR US - A CHARITY PROJECT <3
 
 
 ------------
 
 
-####List of Technologies
+List of Technologies
 
 - ASP.NET
 - HTML5
